@@ -7,6 +7,7 @@ public class MenuSwapper : MonoBehaviour
 {
     [SerializeField] public TMP_Dropdown menuSelectionDropdown;
     [SerializeField] public List<Menu> menus = new();
+    [SerializeField] public int currentMenu;
 
     private void Awake()
     {
@@ -44,6 +45,8 @@ public class MenuSwapper : MonoBehaviour
 
         // Allows invoking the events that you you wanted invoked upon changing to that menu
         menus[menuIndex].onMenuSelect.Invoke();
+
+        currentMenu = menuIndex;
     }
 
     [EditorCools.Button]
