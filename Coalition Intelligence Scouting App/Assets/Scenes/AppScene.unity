@@ -622,7 +622,7 @@ MonoBehaviour:
     icon: {fileID: 2800000, guid: a318fdc51697d914aa157f388a4e044b, type: 3}
   - button: {fileID: 1058055311}
     menuIndex: 2
-    icon: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 2800000, guid: 8323016128f5f334c8f1ec0cbe7d5098, type: 3}
 --- !u!114 &389581551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 8323016128f5f334c8f1ec0cbe7d5098, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
