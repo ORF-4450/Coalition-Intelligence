@@ -51,6 +51,7 @@ public class MenuSelector : MonoBehaviour
         foreach (MenuButton mb in menuButtons)
         {
             mb.button.gameObject.GetComponent<RawImage>().color = colorHolder.buttonColor;
+            mb.button.gameObject.GetComponent<RawImage>().texture = mb.icon;
         }
     }
 }
@@ -60,4 +61,6 @@ public class MenuButton
 {
     public Button button;
     public int menuIndex;
+
+    public Texture icon;
 }
