@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class ColorHolder : MonoBehaviour
 {
-    [SerializeField] public Color unselected;
-    [SerializeField] public Color selected;
+    [SerializeField] public Color buttonColor;
 }
