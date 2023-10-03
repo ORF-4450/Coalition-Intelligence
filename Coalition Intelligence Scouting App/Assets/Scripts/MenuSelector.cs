@@ -9,17 +9,18 @@ public class MenuSelector : MonoBehaviour
     [SerializeField] private MenuSwapper menuSwapper;
     [SerializeField] private ColorHolder colorHolder;
 
+    [SerializeField] private GameObject prefab;
+
     [SerializeField] public List<MenuButton> menuButtons = new();
 
     // Start is called before the first frame update
     void Start()
     {
+        FixColors();
         foreach (MenuButton mb in menuButtons)
         {
             mb.button.onClick.AddListener(() => ChangeMenu(mb.menuIndex));
         }
-
-        FixColors();
     }
 
     void ChangeMenu(int ID)
@@ -31,6 +32,29 @@ public class MenuSelector : MonoBehaviour
         menuSwapper.ChangeMenu(ID);
     }
 
+    [EditorCools.Button]
+    void CreateButtons()
+    {
+        for (var i = gameObject.transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(gameObject.transform.GetChild(i).gameObject);
+        }
+
+        foreach (MenuButton mb in menuButtons)
+        {
+            mb.buttonObject = Instantiate(prefab, gameObject.transform);
+
+            float x = (mb.menuIndex - Mathf.Round((float)menuButtons.Count / 2));
+            mb.buttonObject.transform.localPosition = new Vector3 (x * 100,0,0);
+
+            mb.buttonObject.name = mb.name;
+            mb.button = mb.buttonObject.GetComponent<Button>();
+        }
+
+        FixColors();
+        Debug.Log("Created Buttons");
+    }
+
     void Destroy()
     {
         foreach (MenuButton mb in menuButtons)
@@ -38,13 +62,6 @@ public class MenuSelector : MonoBehaviour
             mb.button.onClick.RemoveListener(() => ChangeMenu(mb.menuIndex));
         }
     }
-
-    /*void AddChildren()
-    {
-
-    }*/
-
-    [EditorCools.Button]
     void FixColors()
     {
         
@@ -59,7 +76,9 @@ public class MenuSelector : MonoBehaviour
 [Serializable]
 public class MenuButton
 {
-    public Button button;
+    public string name;
+    [HideInInspector] public Button button;
+    [HideInInspector] public GameObject buttonObject;
     public int menuIndex;
 
     public Texture icon;
