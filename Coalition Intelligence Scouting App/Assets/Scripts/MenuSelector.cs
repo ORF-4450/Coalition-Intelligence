@@ -16,7 +16,7 @@ public class MenuSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FixColors();
+        ReloadIcons();
         foreach (MenuButton mb in menuButtons)
         {
             mb.button.onClick.AddListener(() => ChangeMenu(mb.menuIndex));
@@ -40,18 +40,24 @@ public class MenuSelector : MonoBehaviour
             DestroyImmediate(gameObject.transform.GetChild(i).gameObject);
         }
 
-        foreach (MenuButton mb in menuButtons)
+        menuButtons.Clear();
+
+        for (var i = 0; i <= menuSwapper.gameObject.transform.childCount - 1; i++)
         {
+            MenuButton mb = new();
+            menuButtons.Add(mb);
             mb.buttonObject = Instantiate(prefab, gameObject.transform);
 
             float x = (mb.menuIndex - Mathf.Round((float)menuButtons.Count / 2));
             mb.buttonObject.transform.localPosition = new Vector3 (x * 100,0,0);
 
-            mb.buttonObject.name = mb.name;
+            mb.buttonObject.name = menuSwapper.gameObject.transform.GetChild(i).name;
+            mb.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.button = mb.buttonObject.GetComponent<Button>();
+            mb.menuIndex = i + 1;
         }
 
-        FixColors();
+        ReloadIcons();
         Debug.Log("Created Buttons");
     }
 
@@ -62,7 +68,9 @@ public class MenuSelector : MonoBehaviour
             mb.button.onClick.RemoveListener(() => ChangeMenu(mb.menuIndex));
         }
     }
-    void FixColors()
+    
+    [EditorCools.Button]
+    void ReloadIcons()
     {
         
         foreach (MenuButton mb in menuButtons)
