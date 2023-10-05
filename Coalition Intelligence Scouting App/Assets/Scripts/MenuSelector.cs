@@ -47,14 +47,13 @@ public class MenuSelector : MonoBehaviour
             MenuButton mb = new();
             menuButtons.Add(mb);
             mb.buttonObject = Instantiate(prefab, gameObject.transform);
-
-            float x = (mb.menuIndex - Mathf.Round((float)menuButtons.Count / 2));
-            mb.buttonObject.transform.localPosition = new Vector3 (x * 100,0,0);
+            
+            mb.menuIndex = i;
+            mb.buttonObject.transform.localPosition = new Vector3 ((menuSwapper.gameObject.transform.childCount * -50) + (i * 100),0,0);
 
             mb.buttonObject.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.button = mb.buttonObject.GetComponent<Button>();
-            mb.menuIndex = i;
         }
 
         ReloadIcons();
