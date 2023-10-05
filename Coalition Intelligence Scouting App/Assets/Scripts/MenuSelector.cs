@@ -54,7 +54,7 @@ public class MenuSelector : MonoBehaviour
             mb.buttonObject.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.button = mb.buttonObject.GetComponent<Button>();
-            mb.menuIndex = i + 1;
+            mb.menuIndex = i;
         }
 
         ReloadIcons();
@@ -68,7 +68,7 @@ public class MenuSelector : MonoBehaviour
             mb.button.onClick.RemoveListener(() => ChangeMenu(mb.menuIndex));
         }
     }
-    
+
     [EditorCools.Button]
     void ReloadIcons()
     {
