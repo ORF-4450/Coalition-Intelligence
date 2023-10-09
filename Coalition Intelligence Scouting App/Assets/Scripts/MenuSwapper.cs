@@ -23,7 +23,7 @@ public class MenuSwapper : MonoBehaviour
 
     private void Start()
     {
-        if (defaultMenu != null) ChangeMenu(defaultMenu);
+        if (defaultMenu > 0 && defaultMenu < menus.Count + 1) ChangeMenu(defaultMenu);
     }
 
     // Updates options of dropdown based on menu list
