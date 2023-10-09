@@ -21,6 +21,7 @@ public class MenuSelector : MonoBehaviour
         {
             mb.button.onClick.AddListener(() => ChangeMenu(mb.menuIndex));
         }
+        ChangeMenu(menuSwapper.defaultMenu,false);
     }
 
     void ChangeMenu(int ID)
@@ -30,6 +31,15 @@ public class MenuSelector : MonoBehaviour
             mb.button.interactable = (ID != mb.menuIndex);
         }
         menuSwapper.ChangeMenu(ID);
+    }
+
+    void ChangeMenu(int ID, bool changeMenu)
+    {
+        foreach (MenuButton mb in menuButtons)
+        {
+            mb.button.interactable = (ID != mb.menuIndex);
+        }
+        if (changeMenu) menuSwapper.ChangeMenu(ID);
     }
 
     [EditorCools.Button]

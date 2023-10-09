@@ -7,7 +7,8 @@ public class MenuSwapper : MonoBehaviour
 {
     [SerializeField] public TMP_Dropdown menuSelectionDropdown;
     [SerializeField] public List<Menu> menus = new();
-    [SerializeField] public int currentMenu;
+    [SerializeField] public int currentMenu = 1;
+    [SerializeField] public int defaultMenu;
 
     private void Awake()
     {
@@ -18,6 +19,11 @@ public class MenuSwapper : MonoBehaviour
 
             UpdateDropdown();
         }
+    }
+
+    private void Start()
+    {
+        if (defaultMenu != null) ChangeMenu(defaultMenu);
     }
 
     // Updates options of dropdown based on menu list

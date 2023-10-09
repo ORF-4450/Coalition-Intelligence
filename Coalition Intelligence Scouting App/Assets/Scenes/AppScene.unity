@@ -862,7 +862,8 @@ MonoBehaviour:
     onMenuSelect:
       m_PersistentCalls:
         m_Calls: []
-  currentMenu: 0
+  currentMenu: 3
+  defaultMenu: 3
 --- !u!1 &1090254705
 GameObject:
   m_ObjectHideFlags: 0
