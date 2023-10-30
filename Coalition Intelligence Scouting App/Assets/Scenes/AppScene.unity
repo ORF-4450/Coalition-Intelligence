@@ -836,32 +836,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053211380}
-  - component: {fileID: 1053211379}
+  - component: {fileID: 1053211381}
   m_Layer: 0
-  m_Name: ProofOfConceptXML
+  m_Name: ProofOfConceptCSV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1053211379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053211378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34bc5ab68c8cedc40b0530ec00f78441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IC:
-    Inputs:
-    - key: test1
-      value: abc
-    - key: test2
-      value: xyz
 --- !u!4 &1053211380
 Transform:
   m_ObjectHideFlags: 0
@@ -877,6 +859,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053211381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053211378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d490b3f474abb4097b5bb80f12f32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataKeys:
+  - greeting
+  - excuse
+  - Hello World!
+  theData:
+  - hi
+  - cat ate my homework
+  - Hello, Programmer!
 --- !u!1 &1199522469
 GameObject:
   m_ObjectHideFlags: 0
