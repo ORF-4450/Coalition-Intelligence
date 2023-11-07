@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class IntegerVariableModifier : GeneralVariableModifier<IntegerVariable>
 {
     protected override IntegerVariable Variable { get => Variable; set => Variable = value; }
 
-    protected Toggle minimumValueExistsVisualizer;
+    [SerializeField] protected Toggle minimumValueExistsVisualizer;
     protected TMP_InputField minimumValueVisualizer;
-    protected Toggle maximumValueExistsVisualizer;
+    [SerializeField] protected Toggle maximumValueExistsVisualizer;
     protected TMP_InputField maximumValueVisualizer;
     protected TMP_InputField valueVisualizer;
 

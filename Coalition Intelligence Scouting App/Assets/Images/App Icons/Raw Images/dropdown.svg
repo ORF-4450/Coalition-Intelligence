@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800"
+   height="300"
+   viewBox="0 0 211.66666 79.374999"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="dropdown.svg"
+   inkscape:export-filename="dropdown.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#8e8e8e"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.80033931"
+     inkscape:cx="272.38447"
+     inkscape:cy="83.089759"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,8,0,1 @ F,0,0,1,0,8,0,1 @ F,0,0,1,0,8,0,1 @ F,0,0,1,0,8,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="M 8.0000285,0 A 8,8 0 0 0 4.9387166,0.60874837 8,8 0 0 0 2.3430094,2.3430094 8,8 0 0 0 0.60874837,4.9387166 8,8 0 0 0 0,8.0000285 V 71.374972 A 8,8 0 0 0 0.60874837,74.436283 8,8 0 0 0 2.3430094,77.031991 8,8 0 0 0 4.9387166,78.766252 8,8 0 0 0 8.0000285,79.375 H 203.66664 a 8,8 0 0 0 3.06131,-0.608748 8,8 0 0 0 2.59571,-1.734261 8,8 0 0 0 1.73426,-2.595708 8,8 0 0 0 0.60875,-3.061311 V 8.0000285 a 8,8 0 0 0 -0.0987,-1.2516032 8,8 0 0 0 -0.293,-1.2205973 8,8 0 0 0 -0.48007,-1.1596192 8,8 0 0 0 -0.6563,-1.0707357 8,8 0 0 0 -0.81493,-0.9544637 8,8 0 0 0 -0.95447,-0.8149373 8,8 0 0 0 -1.07073,-0.65629069 8,8 0 0 0 -1.15962,-0.48007405 8,8 0 0 0 -1.2206,-0.29300537 A 8,8 0 0 0 203.66664,0 Z M 167.29366,31.118514 177.877,41.701847 188.46033,31.118514 193.752,36.410181 177.877,50.962264 162.002,36.410181 Z"
+       style="fill:#ffffff;stroke-width:3.96875"
+       id="path3" />
+  </g>
+</svg>
