@@ -59,7 +59,7 @@ public class MenuSelector : MonoBehaviour
             mb.buttonObject = Instantiate(prefab, gameObject.transform);
             
             mb.menuIndex = i;
-            mb.buttonObject.transform.localPosition = new Vector3 ((menuSwapper.gameObject.transform.childCount * -50) + (i * 100),0,0);
+            mb.buttonObject.transform.localPosition = new Vector3 (((menuSwapper.gameObject.transform.childCount - 1) * -50) + (i * 100),0,0);
 
             mb.buttonObject.name = menuSwapper.gameObject.transform.GetChild(i).name;
             mb.name = menuSwapper.gameObject.transform.GetChild(i).name;

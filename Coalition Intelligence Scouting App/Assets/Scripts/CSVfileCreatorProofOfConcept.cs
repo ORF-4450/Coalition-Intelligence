@@ -48,6 +48,7 @@ public class CSVfileCreatorProofOfConcept : MonoBehaviour
     void DeleteData(string path, List<string> keys)
     {
         StreamWriter writer = new StreamWriter(path);
+        Debug.Log(path);
         string line = "";
         foreach(string key in keys)
         {
