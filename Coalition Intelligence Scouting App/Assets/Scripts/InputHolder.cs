@@ -16,7 +16,7 @@ public class InputHolder : MonoBehaviour
     [EditorCools.Button]
     void ChangeSize()
     {
-        rt.sizeDelta = new Vector2(-200, height); //2nd value is height of scouting menu
+        rt.sizeDelta = new Vector2(0, height); //2nd value is height of scouting menu
         gameObject.transform.localPosition = new Vector3(0,-1 * rt.sizeDelta.y/2,0);
     }
 }
