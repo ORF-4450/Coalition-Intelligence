@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : GeneralVariable
 {
+    [SerializeField] private GameObject prefab;
     [SerializeField] private TextMeshProUGUI nameVisualizer;
 
+    protected T _Variable;
     protected abstract T Variable { get; set; }
 
-    private void Start()
+    private void OnEnable()
     {
         SetValuesInMenu();
     }
@@ -27,7 +27,6 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     {
         nameVisualizer.text = "";
     }
-
     protected virtual void SaveVariable()
     {
         Variable.infoName = nameVisualizer.text;
@@ -35,12 +34,10 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
 
     protected void CreateVariable()
     {
-        Instantiate(Variable);
-        //gameObjectGrid.AddGridObject(Variable.gameObject);
+        Instantiate(prefab);
     }
     protected void DeleteVariable()
     {
-        //gameObjectGrid.RemoveGridObject(Variable.gameObject);
         Destroy(gameObject);
     }
 }

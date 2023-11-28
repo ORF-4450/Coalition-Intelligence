@@ -2,7 +2,7 @@ using UnityEngine.UI;
 
 public class BooleanVariableModifier : GeneralVariableModifier<BooleanVariable>
 {
-    protected override BooleanVariable Variable { get => Variable; set => Variable = value; }
+    protected override BooleanVariable Variable { get => _Variable; set => _Variable = value; }
 
     Toggle booleanVisualizer;
 

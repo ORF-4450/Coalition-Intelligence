@@ -1,43 +1,25 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable>
 {
-    protected override DropdownVariable Variable { get => Variable; set => Variable = value; }
-    // Dropdown Options need a scrolling field, infinite downward.
-    // If you child the objects under the scroll bar, might as well use that
+    protected override DropdownVariable Variable { get => _Variable; set => _Variable = value; }
     protected Transform visualizedDropdownOptionsParent;
     protected GameObject visualizedDropdownOptionPrefab;
     protected static List<DropdownOptionVisualizer> dropdownOptionVisualizers = new();
-    protected Vector2 dropdownOptionInitialPosition;
-
-    private void Start()
-    {
-        // Calculate where dropdownOptionInitialPosition is
-        // x => identical as visualizedDropdownOptionsParent.position.x
-        // y => visualizedDropdownOptionsParent w/ offset (like half of prefab.localScale.y)
-        // Maybe below works? Depends on how it's made in Unity
-        dropdownOptionInitialPosition =
-            new Vector2(visualizedDropdownOptionsParent.position.x,
-            visualizedDropdownOptionsParent.position.y
-                - visualizedDropdownOptionPrefab.transform.localScale.y / 2);
-    }
 
     protected override void SetToVariableValues()
     {
         base.SetToVariableValues();
-        if (dropdownOptionVisualizers.Count > Variable.dropdown.options.Count)
-            DestroyVisualizedDropdownOptions(Variable.dropdown.options.Count - 1,
-                                             dropdownOptionVisualizers.Count - 1);
         for (int i = 0; i < dropdownOptionVisualizers.Count; i++)
             dropdownOptionVisualizers[i].textVisualizer.text = Variable.dropdown.options[i].text;
     }
     protected override void SetToDefaultValues()
     {
         base.SetToDefaultValues();
-        for (int i = 0; i < dropdownOptionVisualizers.Count; i++)
-            dropdownOptionVisualizers[i].textVisualizer.text = "";
+        ClearDropdownOptions();
     }
     protected override void SaveVariable()
     {
@@ -55,32 +37,29 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     {
         // Think this would work but dunno. Would like to make better
         GameObject visualizedDropdownOption = Instantiate(visualizedDropdownOptionPrefab);
-        DropdownOptionVisualizer visualizedDropdownOptionScript = 
-            visualizedDropdownOption.GetComponent<DropdownOptionVisualizer>();
+        DropdownOptionVisualizer visualizedDropdownOptionScript = new DropdownOptionVisualizer();
+
+        visualizedDropdownOptionScript.gameObject = visualizedDropdownOption;
+        visualizedDropdownOptionScript.textVisualizer.text = info;
 
         dropdownOptionVisualizers.Add(visualizedDropdownOptionScript);
-
-        visualizedDropdownOptionScript.textVisualizer.text = info;
-        visualizedDropdownOption.transform.position = 
-            new Vector2(dropdownOptionInitialPosition.x,
-                        dropdownOptionInitialPosition.y - 
-                        (dropdownOptionVisualizers.Count - 1) * 
-                        visualizedDropdownOptionPrefab.transform.localScale.y);
     }
 
-    protected void DestroyVisualizedDropdownOptions()
+    protected void ClearDropdownOptions()
     {
-        DestroyVisualizedDropdownOptions(0, visualizedDropdownOptionsParent.childCount - 1);
+        for (int i = dropdownOptionVisualizers.Count; i >= 0; i--)
+            DestroyDropdownOption(i);
     }
-    protected void DestroyVisualizedDropdownOptions(int start, int end)
+    protected void DestroyDropdownOption(int index)
     {
-        dropdownOptionVisualizers.Clear();
-        for (int i = end; i > start; i--)
-            Destroy(visualizedDropdownOptionsParent.GetChild(i));
+        Destroy(dropdownOptionVisualizers[index].gameObject);
+        dropdownOptionVisualizers.RemoveAt(index);
     }
 
     public static void Move(DropdownOptionVisualizer dropdownOptionVisualizer, int newIndex)
     {
+        if (newIndex < 0) newIndex = 0;
+        if (newIndex >= dropdownOptionVisualizers.Count) newIndex = dropdownOptionVisualizers.Count - 1;
         int index = dropdownOptionVisualizers.IndexOf(dropdownOptionVisualizer);
 
         dropdownOptionVisualizers.RemoveAt(index);
@@ -95,15 +74,17 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     {
         // Lock this to only allow whole number inputs so maybe use TextValidator
         // and remove everything except 0123456789
-        public TMP_InputField indexWriter;
-        public bool selected;
+        public GameObject gameObject;
+        public int index { get => dropdownOptionVisualizers.IndexOf(this); }
         public TMP_InputField textVisualizer;
+        private Button decreaseIndex;
+        private Button increaseIndex;
 
         public DropdownOptionVisualizer()
         {
-            selected = false;
             textVisualizer.text = "";
-            indexWriter.onValueChanged.AddListener(e => Move(this, int.Parse(indexWriter.text)));
+            decreaseIndex.onClick.AddListener(() => Move(this, index - 1));
+            increaseIndex.onClick.AddListener(() => Move(this, index + 1));
         }
     }
 }

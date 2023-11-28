@@ -2,7 +2,7 @@ using TMPro;
 
 public class TextVariableModifier : GeneralVariableModifier<TextVariable>
 {
-    protected override TextVariable Variable { get => Variable; set => Variable = value; }
+    protected override TextVariable Variable { get => _Variable; set => _Variable = value; }
     protected TMP_InputField textVisualizer;
 
     protected override void SetToVariableValues()
