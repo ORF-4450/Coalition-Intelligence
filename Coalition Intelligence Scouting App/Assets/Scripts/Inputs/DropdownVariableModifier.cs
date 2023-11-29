@@ -7,8 +7,22 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
 {
     protected override DropdownVariable Variable { get => _Variable; set => _Variable = value; }
     protected Transform visualizedDropdownOptionsParent;
-    protected GameObject visualizedDropdownOptionPrefab;
-    protected static List<DropdownOptionVisualizer> dropdownOptionVisualizers = new();
+    [SerializeField] protected GameObject visualizedDropdownOptionPrefab;
+    public List<DropdownOptionVisualizer> dropdownOptionVisualizers = new();
+
+    [SerializeField] public Button addOptionButton;
+
+    [SerializeField] TMP_InputField addOptionInputField;
+
+    void Awake()
+    {
+        addOptionButton.onClick.AddListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
+    }
+
+    void OnDestroy()
+    {
+        addOptionButton.onClick.RemoveListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
+    }
 
     protected override void SetToVariableValues()
     {
@@ -36,55 +50,26 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     protected void AddVisualizedDropdownOption(string info)
     {
         // Think this would work but dunno. Would like to make better
-        GameObject visualizedDropdownOption = Instantiate(visualizedDropdownOptionPrefab);
-        DropdownOptionVisualizer visualizedDropdownOptionScript = new DropdownOptionVisualizer();
+        DropdownOptionVisualizer visualizedDropdownOption = Instantiate(visualizedDropdownOptionPrefab, transform).GetComponent<DropdownOptionVisualizer>();
 
-        visualizedDropdownOptionScript.gameObject = visualizedDropdownOption;
-        visualizedDropdownOptionScript.textVisualizer.text = info;
+        visualizedDropdownOption.textVisualizer.text = info;
 
-        dropdownOptionVisualizers.Add(visualizedDropdownOptionScript);
+        dropdownOptionVisualizers.Add(visualizedDropdownOption);
     }
 
     protected void ClearDropdownOptions()
     {
-        for (int i = dropdownOptionVisualizers.Count; i >= 0; i--)
+        for (int i = dropdownOptionVisualizers.Count; i > 0; i--)
+        {
             DestroyDropdownOption(i);
+        }
     }
-    protected void DestroyDropdownOption(int index)
+    public void DestroyDropdownOption(int index)
     {
         Destroy(dropdownOptionVisualizers[index].gameObject);
         dropdownOptionVisualizers.RemoveAt(index);
     }
 
-    public static void Move(DropdownOptionVisualizer dropdownOptionVisualizer, int newIndex)
-    {
-        if (newIndex < 0) newIndex = 0;
-        if (newIndex >= dropdownOptionVisualizers.Count) newIndex = dropdownOptionVisualizers.Count - 1;
-        int index = dropdownOptionVisualizers.IndexOf(dropdownOptionVisualizer);
-
-        dropdownOptionVisualizers.RemoveAt(index);
-
-        if (newIndex > index) newIndex--;
-        // the actual index could have shifted due to the removal
-
-        dropdownOptionVisualizers.Insert(newIndex, dropdownOptionVisualizer);
-    }
-
-    public class DropdownOptionVisualizer
-    {
-        // Lock this to only allow whole number inputs so maybe use TextValidator
-        // and remove everything except 0123456789
-        public GameObject gameObject;
-        public int index { get => dropdownOptionVisualizers.IndexOf(this); }
-        public TMP_InputField textVisualizer;
-        private Button decreaseIndex;
-        private Button increaseIndex;
-
-        public DropdownOptionVisualizer()
-        {
-            textVisualizer.text = "";
-            decreaseIndex.onClick.AddListener(() => Move(this, index - 1));
-            increaseIndex.onClick.AddListener(() => Move(this, index + 1));
-        }
-    }
+    public void Move(DropdownOptionVisualizer dropdownOptionVisualizer, int newIndex) =>
+        dropdownOptionVisualizer.transform.SetSiblingIndex(newIndex);
 }
