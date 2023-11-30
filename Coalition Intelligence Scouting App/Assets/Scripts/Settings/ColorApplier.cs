@@ -5,45 +5,34 @@ using UnityEngine.UI;
 
 public class ColorApplier : MonoBehaviour
 {
-    [SerializeField] public ColorHolder CH;
     [SerializeField] public int colorIndex;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        ApplyColors();
-    }
-
-[EditorCools.Button]
-    public void ApplyColors()
-    {
-        if (gameObject.GetComponent<RawImage>() != null) gameObject.GetComponent<RawImage>().color = SelectedColor(colorIndex);
-
-        if (gameObject.GetComponent<Camera>() != null) gameObject.GetComponent<Camera>().backgroundColor = SelectedColor(colorIndex);
-    }
-
-    Color SelectedColor(int Index)
+    void ApplyColors(ColorOption colorOption)
     {
         Color bufferColor;
-        switch(Index)
+        switch(colorIndex)
         {
             case 1:
-            bufferColor = CH.currentColor.primaryColor;
+            bufferColor = colorOption.primaryColor;
             break;
 
             case 2:
-            bufferColor = CH.currentColor.secondaryColor;
+            bufferColor = colorOption.secondaryColor;
             break;
 
             case 3:
-            bufferColor = CH.currentColor.backgroundColor;
+            bufferColor = colorOption.backgroundColor;
             break;
 
             default:
-            Debug.Log("Color index " + Index.ToString() + " is out of range.");
+            Debug.Log("Color index " + colorIndex.ToString() + " is out of range.");
             bufferColor = Color.black;
             break;
         }
-        return bufferColor;
+
+        if (gameObject.GetComponent<RawImage>() != null) gameObject.GetComponent<RawImage>().color = bufferColor;
+        if (gameObject.GetComponent<Image>() != null) gameObject.GetComponent<Image>().color = bufferColor;
+
+        if (gameObject.GetComponent<Camera>() != null) gameObject.GetComponent<Camera>().backgroundColor = bufferColor;
     }
 }

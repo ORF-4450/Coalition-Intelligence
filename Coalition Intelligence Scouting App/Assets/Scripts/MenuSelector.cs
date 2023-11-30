@@ -84,11 +84,10 @@ public class MenuSelector : MonoBehaviour
         
         foreach (MenuButton mb in menuButtons)
         {
-            mb.button.gameObject.GetComponent<ColorApplier>().CH = CH;
             mb.button.gameObject.GetComponent<ColorApplier>().colorIndex = 1;
-            mb.button.gameObject.GetComponent<ColorApplier>().ApplyColors();
             mb.button.gameObject.GetComponent<RawImage>().texture = mb.icon;
         }
+        CH.SetColor(gameObject);
     }
 }
 

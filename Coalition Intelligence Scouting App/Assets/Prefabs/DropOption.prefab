@@ -505,8 +505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdownVariableModifier: {fileID: 0}
   textVisualizer: {fileID: 6511788555190925486}
-  increaseIndex: {fileID: 1639037432203158494}
-  decreaseIndex: {fileID: 3385267878911093875}
+  increaseIndex: {fileID: 3385267878911093875}
+  decreaseIndex: {fileID: 1639037432203158494}
   delete: {fileID: 3986988808915371191}
 --- !u!1 &5146672396763485209
 GameObject:
@@ -926,14 +926,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 4
+  m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 4
+  m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 74
   m_CharacterLimit: 0
@@ -988,3 +988,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91a24bee90943044a59f1632cfdff21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputFields: []

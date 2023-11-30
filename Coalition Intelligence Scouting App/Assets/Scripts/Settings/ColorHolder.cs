@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class ColorHolder : MonoBehaviour
 {
-    [SerializeField] public int currentColorIndex;
     [SerializeField] public List<ColorOption> ColorOptions;
-    public ColorOption currentColor;
-    void SetColor(int colorIndex)
+
+    [SerializeField] int currentColorIndex = 1;
+    [SerializeField] public GameObject canvas;
+    [SerializeField] public GameObject cameraObject;
+    [SerializeField] public TMP_Dropdown colorSelector;
+
+    void Awake()
     {
-        currentColor = ColorOptions[colorIndex - 1];
+        SetColor();
     }
-    [EditorCools.Button]
-    private void changeColor()
+    public void SetColor()
     {
-        SetColor(currentColorIndex);
+        currentColorIndex = colorSelector.value;
+        canvas.BroadcastMessage("ApplyColors", ColorOptions[currentColorIndex], SendMessageOptions.DontRequireReceiver);
+        cameraObject.BroadcastMessage("ApplyColors", ColorOptions[currentColorIndex], SendMessageOptions.DontRequireReceiver);
+    }
+
+    public void SetColor(GameObject parentObject)
+    {
+        parentObject.BroadcastMessage("ApplyColors", ColorOptions[currentColorIndex], SendMessageOptions.DontRequireReceiver);
     }
 }
 

@@ -11,17 +11,29 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     public List<DropdownOptionVisualizer> dropdownOptionVisualizers = new();
 
     [SerializeField] public Button addOptionButton;
-
     [SerializeField] TMP_InputField addOptionInputField;
 
-    void Awake()
+    [SerializeField] public Button saveChanges;
+    [SerializeField] public Button cancelChanges;
+    [SerializeField] public Button destroy;
+
+    private void Awake()
     {
         addOptionButton.onClick.AddListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
+        saveChanges.onClick.AddListener(() => SaveVariable());
+        cancelChanges.onClick.AddListener(() => CancelChanges());
+        destroy.onClick.AddListener(() => Destroy());
     }
-
-    void OnDestroy()
+    private void OnEnable()
     {
-        addOptionButton.onClick.RemoveListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
+        destroy.interactable = !(Variable == null);
+    }
+    private void OnDestroy()
+    {
+        addOptionButton.onClick.RemoveAllListeners();
+        saveChanges.onClick.RemoveAllListeners();
+        cancelChanges.onClick.RemoveAllListeners();
+        destroy.onClick.RemoveAllListeners();
     }
 
     protected override void SetToVariableValues()
@@ -49,12 +61,19 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     }
     protected void AddVisualizedDropdownOption(string info)
     {
-        // Think this would work but dunno. Would like to make better
         DropdownOptionVisualizer visualizedDropdownOption = Instantiate(visualizedDropdownOptionPrefab, transform).GetComponent<DropdownOptionVisualizer>();
-
         visualizedDropdownOption.textVisualizer.text = info;
-
         dropdownOptionVisualizers.Add(visualizedDropdownOption);
+
+        addOptionInputField.text = "";
+    }
+    protected void CancelChanges()
+    {
+
+    }
+    protected void Destroy()
+    {
+
     }
 
     protected void ClearDropdownOptions()
@@ -70,6 +89,11 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         dropdownOptionVisualizers.RemoveAt(index);
     }
 
-    public void Move(DropdownOptionVisualizer dropdownOptionVisualizer, int newIndex) =>
+    public void Move(DropdownOptionVisualizer dropdownOptionVisualizer, int newIndex)
+    {
+        newIndex = Mathf.Clamp(newIndex, 0, dropdownOptionVisualizers.Count - 1);
         dropdownOptionVisualizer.transform.SetSiblingIndex(newIndex);
+        dropdownOptionVisualizers.Remove(dropdownOptionVisualizer);
+        dropdownOptionVisualizers.Insert(newIndex, dropdownOptionVisualizer);
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DropdownOptionVisualizer : MonoBehaviour
 {
-    public int index { get => dropdownVariableModifier.dropdownOptionVisualizers.IndexOf(this); }
+    public int index { get => transform.GetSiblingIndex(); }
     [HideInInspector] public DropdownVariableModifier dropdownVariableModifier;
     [SerializeField] public TMP_InputField textVisualizer;
     [SerializeField] private Button increaseIndex;
@@ -23,8 +23,8 @@ public class DropdownOptionVisualizer : MonoBehaviour
     private void OnDestroy()
     {
         textVisualizer.text = "";
-        decreaseIndex.onClick.RemoveListener(() => dropdownVariableModifier.Move(this, index - 1));
-        increaseIndex.onClick.RemoveListener(() => dropdownVariableModifier.Move(this, index + 1));
-        delete.onClick.RemoveListener(() => dropdownVariableModifier.DestroyDropdownOption(index));
+        decreaseIndex.onClick.RemoveAllListeners();
+        increaseIndex.onClick.RemoveAllListeners();
+        delete.onClick.RemoveAllListeners();
     }
 }
