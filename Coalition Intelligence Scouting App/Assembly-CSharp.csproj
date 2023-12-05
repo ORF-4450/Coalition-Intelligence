@@ -50,18 +50,40 @@
     <UnityVersion>2022.3.9f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Sammy\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\husmannsa\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.3\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\Samples\Test.cs" />
+    <Compile Include="Assets\Scripts\Inputs\GeneralVariable.cs" />
+    <Compile Include="Assets\Scripts\MatchJsonCode.cs" />
+    <Compile Include="Assets\Scripts\TextValidator.cs" />
+    <Compile Include="Assets\Scripts\Inputs\TextVariable.cs" />
+    <Compile Include="Assets\Scripts\Inputs\TextVariableModifier.cs" />
+    <Compile Include="Assets\Scripts\Inputs\IntegerVariableModifier.cs" />
+    <Compile Include="Assets\Scripts\DisableButtons.cs" />
+    <Compile Include="Assets\Scripts\Settings\FontApplier.cs" />
+    <Compile Include="Assets\Scripts\InputHolder.cs" />
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\DropdownStringAttribute\DropdownAttribute.cs" />
     <Compile Include="Assets\Scripts\MenuSwapper.cs" />
+    <Compile Include="Assets\Scripts\CSVfileCreatorProofOfConcept.cs" />
+    <Compile Include="Assets\Scripts\Settings\FontHolder.cs" />
+    <Compile Include="Assets\Scripts\Settings\ColorHolder.cs" />
+    <Compile Include="Assets\Scripts\APIGetter.cs" />
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\InspectorButton\ButtonAttribute.cs" />
-    <Compile Include="Assets\Scripts\ColorHolder.cs" />
     <Compile Include="Assets\Scripts\MenuSelector.cs" />
+    <Compile Include="Assets\Scripts\Inputs\DropdownVariableModifier.cs" />
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\Vector2MinMax\MinMaxSliderAttribute.cs" />
+    <Compile Include="Assets\Scripts\Settings\ColorApplier.cs" />
+    <Compile Include="Assets\Scripts\Inputs\BooleanVariableModifier.cs" />
+    <Compile Include="Assets\Scripts\Inputs\BooleanVariable.cs" />
+    <Compile Include="Assets\Scripts\Inputs\GeneralVariableModifier.cs" />
+    <Compile Include="Assets\Scripts\Inputs\DropdownVariable.cs" />
+    <Compile Include="Assets\Scripts\Inputs\IntegerVariable.cs" />
+    <Compile Include="Assets\Scripts\PresetJsonCode.cs" />
+    <Compile Include="Assets\Scripts\DropdownOptionVisualizer.cs" />
+    <Compile Include="Assets\Scripts\GameObjectGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -810,6 +832,9 @@
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>

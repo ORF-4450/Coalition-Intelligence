@@ -5,17 +5,19 @@ using UnityEngine.UI;
 using TMPro;
 public class ColorHolder : MonoBehaviour
 {
+    public static ColorHolder instance;
     [SerializeField] public List<ColorOption> ColorOptions;
 
-    [SerializeField] int currentColorIndex = 1;
+    [SerializeField] public int currentColorIndex = 0;
     [SerializeField] public GameObject canvas;
     [SerializeField] public GameObject cameraObject;
     [SerializeField] public TMP_Dropdown colorSelector;
 
     void Awake()
     {
-        SetColor();
+        instance = this;
     }
+
     public void SetColor()
     {
         currentColorIndex = colorSelector.value;

@@ -7,6 +7,11 @@ public class ColorApplier : MonoBehaviour
 {
     [SerializeField] public int colorIndex;
 
+    void OnEnable()
+    {
+        ApplyColors(ColorHolder.instance.ColorOptions[ColorHolder.instance.currentColorIndex]);
+    }
+
     void ApplyColors(ColorOption colorOption)
     {
         Color bufferColor;
