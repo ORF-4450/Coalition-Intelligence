@@ -9,6 +9,14 @@ public class ColorApplier : MonoBehaviour
 
     void OnEnable()
     {
+        if (ColorHolder.instance != null)
+        {
+            ApplyColors(ColorHolder.instance.ColorOptions[ColorHolder.instance.currentColorIndex]);
+        }
+    }
+
+    void Start()
+    {
         ApplyColors(ColorHolder.instance.ColorOptions[ColorHolder.instance.currentColorIndex]);
     }
 

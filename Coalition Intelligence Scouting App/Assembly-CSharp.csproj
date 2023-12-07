@@ -81,8 +81,8 @@
     <Compile Include="Assets\Scripts\Inputs\GeneralVariableModifier.cs" />
     <Compile Include="Assets\Scripts\Inputs\DropdownVariable.cs" />
     <Compile Include="Assets\Scripts\Inputs\IntegerVariable.cs" />
-    <Compile Include="Assets\Scripts\PresetJsonCode.cs" />
     <Compile Include="Assets\Scripts\DropdownOptionVisualizer.cs" />
+    <Compile Include="Assets\Scripts\PresetJsonCode.cs" />
     <Compile Include="Assets\Scripts\GameObjectGrid.cs" />
   </ItemGroup>
   <ItemGroup>

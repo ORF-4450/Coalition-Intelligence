@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class ColorHolder : MonoBehaviour
 {
-    public static ColorHolder instance;
+    public static ColorHolder instance = null;
     [SerializeField] public List<ColorOption> ColorOptions;
 
     [SerializeField] public int currentColorIndex = 0;

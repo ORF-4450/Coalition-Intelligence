@@ -86,8 +86,8 @@ public class MenuSelector : MonoBehaviour
         {
             mb.button.gameObject.GetComponent<ColorApplier>().colorIndex = 1;
             mb.button.gameObject.GetComponent<RawImage>().texture = mb.icon;
+            mb.buttonObject.SetActive(true);
         }
-        CH.SetColor(gameObject);
     }
 }
 
