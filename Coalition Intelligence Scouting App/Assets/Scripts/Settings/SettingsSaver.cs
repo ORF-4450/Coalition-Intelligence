@@ -15,7 +15,9 @@ public class SettingsSaver : MonoBehaviour
     public TMP_InputField yearField;
     public string filePath;
 
-    public static ConfigUser defaultConfig;
+    public ConfigDevice currentConfigDevice = new();
+
+    public ConfigUser defaultConfig;
 
     void Awake()
     {
@@ -30,6 +32,8 @@ public class SettingsSaver : MonoBehaviour
 
             SaveConfigUser(defaultConfig);
         }
+
+        LoadConfigDevice();
     }
 
     public ConfigUser CurrentConfigUser()
@@ -99,6 +103,42 @@ public class SettingsSaver : MonoBehaviour
         Debug.Log("Loaded config for " + buffer.name);
     }
 
+    public void SaveConfigDevice()
+    {
+        currentConfigDevice.apiKey = apiKeyField.text;
+        currentConfigDevice.year = yearField.text;
+
+
+        StreamWriter writer = new StreamWriter(filePath + "DeviceConfig.json");
+        writer.WriteLine(JsonUtility.ToJson(currentConfigDevice));
+
+        writer.Flush();
+        writer.Close();
+
+        Debug.Log("Saved DeviceConfig.json");
+    }
+
+    public void LoadConfigDevice()
+    {
+        currentConfigDevice = ReadConfigDevice();
+
+        yearField.text = currentConfigDevice.year;
+        apiKeyField.text = currentConfigDevice.apiKey;
+    }
+
+    public ConfigDevice ReadConfigDevice()
+    {
+        if (!File.Exists(filePath + "DeviceConfig.json")) SaveConfigDevice();
+
+        string configPath = filePath + "DeviceConfig.json";
+        FileInfo file = new FileInfo(configPath);
+        StreamReader reader = file.OpenText();
+
+        ConfigDevice loadedConfig = JsonUtility.FromJson<ConfigDevice>(File.ReadAllText(configPath));
+        reader.Close();
+        Debug.Log("Read " + configPath);
+        return loadedConfig;
+    }
 
 }
 

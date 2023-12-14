@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Inputs\TextVariableModifier.cs" />
     <Compile Include="Assets\Scripts\Inputs\IntegerVariableModifier.cs" />
     <Compile Include="Assets\Scripts\DisableButtons.cs" />
+    <Compile Include="Assets\Scripts\Settings\EnableOnValue.cs" />
     <Compile Include="Assets\Scripts\Settings\FontApplier.cs" />
     <Compile Include="Assets\Scripts\InputHolder.cs" />
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\DropdownStringAttribute\DropdownAttribute.cs" />

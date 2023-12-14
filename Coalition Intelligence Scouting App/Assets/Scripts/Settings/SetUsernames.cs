@@ -39,5 +39,6 @@ public class SetUsernames : MonoBehaviour
     public void OnDisable()
     {
         SS.SaveConfigUser();
+        SS.SaveConfigDevice();
     }
 }
