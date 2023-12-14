@@ -15,6 +15,24 @@ public class SetUsernames : MonoBehaviour
 
     void Start()
     {
+        reloadUsernames();
+    }
+
+    public void OnDisable()
+    {
+        SS.SaveConfigUser();
+        SS.SaveConfigDevice();
+    }
+
+    public void openUsernameFile(string file)
+    {
+        Application.OpenURL(SS.filePath + file);
+    }
+
+    public void reloadUsernames()
+    {
+        List<TMP_Dropdown.OptionData> options = new();
+
         dropdown = gameObject.GetComponent<TMP_Dropdown>();
 
         FileInfo file = new FileInfo (SS.filePath + "usernames" + ".txt");
@@ -24,8 +42,6 @@ public class SetUsernames : MonoBehaviour
 
         reader.Close();
 
-        List<TMP_Dropdown.OptionData> options = new();
-
         foreach (string name in lines.ToList())
         {
             TMP_Dropdown.OptionData buffer = new();
@@ -34,11 +50,5 @@ public class SetUsernames : MonoBehaviour
         }
         
         dropdown.options = options;
-    }
-
-    public void OnDisable()
-    {
-        SS.SaveConfigUser();
-        SS.SaveConfigDevice();
     }
 }
