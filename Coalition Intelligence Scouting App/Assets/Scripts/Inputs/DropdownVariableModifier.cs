@@ -23,6 +23,8 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         saveChanges.onClick.AddListener(() => SaveVariable());
         cancelChanges.onClick.AddListener(() => CancelChanges());
         destroy.onClick.AddListener(() => Destroy());
+
+        //addOptionInputField.onEndEdit.AddListener(() => AddVisualizedDropdownOption());
     }
     private void OnEnable()
     {
@@ -59,6 +61,16 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     {
         AddVisualizedDropdownOption("");
     }
+
+    public void AddVisualizedDropdownOptionFromInput()
+    {
+        if (addOptionInputField.text.EndsWith("\n"))
+        {
+            addOptionInputField.text = addOptionInputField.text.Replace("\n", "");
+            AddVisualizedDropdownOption(addOptionInputField.text);
+        }
+    }
+
     protected void AddVisualizedDropdownOption(string info)
     {
         DropdownOptionVisualizer visualizedDropdownOption = Instantiate(visualizedDropdownOptionPrefab, transform).GetComponent<DropdownOptionVisualizer>();
