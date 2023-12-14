@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\MatchJsonCode.cs" />
     <Compile Include="Assets\Scripts\TextValidator.cs" />
     <Compile Include="Assets\Scripts\Inputs\TextVariable.cs" />
+    <Compile Include="Assets\Scripts\Settings\SetUsernames.cs" />
     <Compile Include="Assets\Scripts\Inputs\TextVariableModifier.cs" />
     <Compile Include="Assets\Scripts\Inputs\IntegerVariableModifier.cs" />
     <Compile Include="Assets\Scripts\DisableButtons.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Scripts\InputHolder.cs" />
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\DropdownStringAttribute\DropdownAttribute.cs" />
     <Compile Include="Assets\Scripts\MenuSwapper.cs" />
+    <Compile Include="Assets\Scripts\Settings\SettingsSaver.cs" />
     <Compile Include="Assets\Scripts\CSVfileCreatorProofOfConcept.cs" />
     <Compile Include="Assets\Scripts\Settings\FontHolder.cs" />
     <Compile Include="Assets\Scripts\Settings\ColorHolder.cs" />
