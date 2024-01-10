@@ -2102,7 +2102,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
-  m_LayoutPriority: 1
+  m_LayoutPriority: 0
 --- !u!114 &485446506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,7 +2130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8666667, g: 0.83833426, b: 0.7254902, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3357,7 +3357,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791741724}
-  - component: {fileID: 791741725}
   m_Layer: 0
   m_Name: MinValue
   m_TagString: Untagged
@@ -3386,21 +3385,6 @@ RectTransform:
   m_AnchoredPosition: {x: 687.77783, y: -450}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &791741725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791741723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d766fc6ac15f254780bce25b29571dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameVisualizer: {fileID: 1623650538}
-  infoName: 
-  inputField: {fileID: 148126039}
 --- !u!1 &795174153
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,7 +5067,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 394183603}
-  infoName: 
   inputField: {fileID: 1433624460}
 --- !u!1 &995334286
 GameObject:
@@ -5183,14 +5166,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1486045356399732580, guid: 6c879e0606fa17a4a90847a34ec3a3b2, type: 3}
-  nameVisualizer: {fileID: 5849239403385502600}
+  nameVisualizer: {fileID: 8456531548179285856}
+  menuLocation: {fileID: 1697416306847946666}
+  saveChanges: {fileID: 856551117}
+  cancelChanges: {fileID: 1949257537}
+  destroy: {fileID: 2013521387}
   visualizedDropdownOptionPrefab: {fileID: 4954202501680662790, guid: 3a82c8db4d5be9c4bb1d23c45e195529, type: 3}
   dropdownOptionVisualizers: []
   addOptionButton: {fileID: 8495182126013894594}
   addOptionInputField: {fileID: 895278088}
-  saveChanges: {fileID: 856551117}
-  cancelChanges: {fileID: 1949257537}
-  destroy: {fileID: 2013521387}
 --- !u!1 &1014865573
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,7 +8011,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 1544567523}
-  infoName: 
   dropdown: {fileID: 214435180}
 --- !u!1 &1565447643
 GameObject:
@@ -9380,6 +9363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889215843}
   - component: {fileID: 1889215844}
+  - component: {fileID: 1889215845}
   m_Layer: 5
   m_Name: Integer
   m_TagString: Untagged
@@ -9434,6 +9418,28 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &1889215845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889215842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73de3327e8272b144886017414673c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1619562662802658384, guid: 4941c19ab2ab1b643bd0174a2abefabe, type: 3}
+  nameVisualizer: {fileID: 8456531548179285856}
+  menuLocation: {fileID: 1697416306847946666}
+  saveChanges: {fileID: 856551117}
+  cancelChanges: {fileID: 1949257537}
+  destroy: {fileID: 2013521387}
+  minimumValueExistsVisualizer: {fileID: 5736787960907687921}
+  minimumValueVisualizer: {fileID: 148126039}
+  maximumValueExistsVisualizer: {fileID: 2742506188163776809}
+  maximumValueVisualizer: {fileID: 6529709218250473049}
 --- !u!1 &1911838633
 GameObject:
   m_ObjectHideFlags: 0
@@ -11622,7 +11628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 7345167808090065551}
-  infoName: 
   dropdown: {fileID: 7926927928727225830}
 --- !u!1 &407498615443566059
 GameObject:
@@ -12951,7 +12956,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -2000.0004}
-  m_SizeDelta: {x: 0, y: 4000}
+  m_SizeDelta: {x: 0, y: 8000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1945633805098104453
 RectTransform:
@@ -13002,21 +13007,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2012956719876269830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2647718142507326733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d749e224c9040f41b0edc8f1c7b68f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameVisualizer: {fileID: 5558123912073365650}
-  infoName: 
-  value: {fileID: 2742506188163776809}
 --- !u!222 &2105343363249115759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13512,7 +13502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 1815562784387851336}
-  infoName: 
   valueVisualizer: {fileID: 1113779021944215030}
   minimumValueExists: 0
   minimumValue: 0
@@ -13722,7 +13711,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7699652778293963264}
-  - component: {fileID: 2012956719876269830}
   m_Layer: 0
   m_Name: MaximumToggle
   m_TagString: Untagged
@@ -14787,7 +14775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 6859309537992194938}
-  infoName: 
   dropdown: {fileID: 6114890390920639507}
 --- !u!222 &4581367679326025563
 CanvasRenderer:
@@ -14993,7 +14980,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 5849239403385502600}
-  infoName: 
   inputField: {fileID: 8933480633182056246}
 --- !u!1 &4902086630852155818
 GameObject:
@@ -15637,7 +15623,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 236674208187043032}
-  - component: {fileID: 8249760953546441182}
   m_Layer: 0
   m_Name: MinimumToggle
   m_TagString: Untagged
@@ -16338,7 +16323,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3082403172316692920}
-  - component: {fileID: 7109910101226520302}
   m_Layer: 0
   m_Name: MaxValue
   m_TagString: Untagged
@@ -16554,7 +16538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 4976104182146469694}
-  infoName: 
   inputField: {fileID: 8059219095453326208}
 --- !u!1 &6421794915195758630
 GameObject:
@@ -17588,21 +17571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c45738aeeb40948889721311bdc89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7109910101226520302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104605891989436051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d766fc6ac15f254780bce25b29571dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameVisualizer: {fileID: 8090886617495956199}
-  infoName: 
-  inputField: {fileID: 6529709218250473049}
 --- !u!1 &7123717034781672889
 GameObject:
   m_ObjectHideFlags: 0
@@ -17748,7 +17716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 392441248313512060}
-  infoName: 
   dropdown: {fileID: 1053674066718695189}
 --- !u!222 &7291159563544215215
 CanvasRenderer:
@@ -18259,12 +18226,12 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 1100
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
+  m_CellSize: {x: 400, y: 400}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -18694,21 +18661,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8249760953546441182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5561075856839965653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d749e224c9040f41b0edc8f1c7b68f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameVisualizer: {fileID: 2643631292973788746}
-  infoName: 
-  value: {fileID: 5736787960907687921}
 --- !u!224 &8263235054362760080
 RectTransform:
   m_ObjectHideFlags: 0

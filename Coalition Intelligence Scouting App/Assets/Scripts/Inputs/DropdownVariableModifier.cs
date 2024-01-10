@@ -13,29 +13,19 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
     [SerializeField] public Button addOptionButton;
     [SerializeField] TMP_InputField addOptionInputField;
 
-    [SerializeField] public Button saveChanges;
-    [SerializeField] public Button cancelChanges;
-    [SerializeField] public Button destroy;
 
-    private void Awake()
-    {
-        addOptionButton.onClick.AddListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
-        saveChanges.onClick.AddListener(() => SaveVariable());
-        cancelChanges.onClick.AddListener(() => CancelChanges());
-        destroy.onClick.AddListener(() => Destroy());
-
-        //addOptionInputField.onEndEdit.AddListener(() => AddVisualizedDropdownOption());
-    }
-    private void OnEnable()
+    protected override void OnEnable()
     {
         destroy.interactable = !(Variable == null);
+
+        base.OnEnable();
+        addOptionButton.onClick.AddListener(() => AddVisualizedDropdownOption(addOptionInputField.text));
+        // addOptionInputField.onEndEdit.AddListener(() => AddVisualizedDropdownOption());
     }
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         addOptionButton.onClick.RemoveAllListeners();
-        saveChanges.onClick.RemoveAllListeners();
-        cancelChanges.onClick.RemoveAllListeners();
-        destroy.onClick.RemoveAllListeners();
     }
 
     protected override void SetToVariableValues()
@@ -54,7 +44,9 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         base.SaveVariable();
         Variable.dropdown.ClearOptions();
         for (int i = 0; i < dropdownOptionVisualizers.Count; i++)
+        {
             Variable.dropdown.options.Add(new TMP_Dropdown.OptionData(dropdownOptionVisualizers[i].textVisualizer.text));
+        }
     }
 
     protected void AddVisualizedDropdownOption()
@@ -78,14 +70,6 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         dropdownOptionVisualizers.Add(visualizedDropdownOption);
 
         addOptionInputField.text = "";
-    }
-    protected void CancelChanges()
-    {
-
-    }
-    protected void Destroy()
-    {
-
     }
 
     protected void ClearDropdownOptions()
