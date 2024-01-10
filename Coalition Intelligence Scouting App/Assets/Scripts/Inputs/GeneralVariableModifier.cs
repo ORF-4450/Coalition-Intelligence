@@ -13,6 +13,7 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     [SerializeField] public Button saveChanges;
     [SerializeField] public Button cancelChanges;
     [SerializeField] public Button destroy;
+    [SerializeField] public MenuSwapper typeMenus;
 
     protected virtual void Awake()
     {
@@ -69,14 +70,21 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
         SaveVariable();
         GameObject instantiatedObject = Instantiate(prefab, menuLocation.transform);
         CopyComponent<T>(Variable, instantiatedObject);
+        ExitMenu();
     }
     protected void DeleteVariable()
     {
         Destroy(gameObject);
+        ExitMenu();
     }
-    protected void CancelChanges()
-    {
 
+    protected virtual void ExitMenu()
+    {
+        typeMenus.ChangeMenu(typeMenus.defaultMenu);
+    }
+    protected virtual void CancelChanges()
+    {
+        typeMenus.ChangeMenu(typeMenus.defaultMenu);
     }
     protected void Destroy()
     {

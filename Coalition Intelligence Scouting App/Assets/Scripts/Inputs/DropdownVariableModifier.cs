@@ -28,6 +28,12 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         addOptionButton.onClick.RemoveAllListeners();
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        addOptionButton.onClick.RemoveAllListeners();
+    }
+
     protected override void SetToVariableValues()
     {
         base.SetToVariableValues();
