@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PresetJsonCode : MonoBehaviour
 {
-    public Transform variableContainer;
+    public Transform editorContainer;
+    public Transform scouterContainer;
+    public TMP_Dropdown selectionDropdownEditor;
+    public TMP_Dropdown selectionDropdownScouter;
+    public TMP_InputField fileNameContainerEditor;
+    [SerializeField] public Button saveJson;
+    [SerializeField] public Button loadJsonEditor;
+    [SerializeField] public Button loadJsonScouter;
     [SerializeField] string[] directorySeperators;
     string filePath { get => Path.Combine(Application.persistentDataPath, Path.Combine(directorySeperators)); }
     [Space][Space][Header("Variable Prefabs")]
@@ -15,15 +23,46 @@ public class PresetJsonCode : MonoBehaviour
     public GameObject dropdownPrefab;
     public GameObject textPrefab;
 
+    protected virtual void Awake()
+    {
+        if(!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+
+        saveJson.onClick.AddListener(() => Save(fileNameContainerEditor.text + ".json"));
+        loadJsonEditor.onClick.AddListener(() => Load(editorContainer, selectionDropdownEditor.options[selectionDropdownEditor.value].text));
+        loadJsonScouter.onClick.AddListener(() => Load(scouterContainer, selectionDropdownScouter.options[selectionDropdownScouter.value].text));
+        ReloadDropdown();
+    }
+
+    [EditorCools.Button]
+    public void ReloadDropdown()
+    {
+        selectionDropdownEditor.ClearOptions();
+        selectionDropdownScouter.ClearOptions();
+
+        DirectoryInfo dir = new DirectoryInfo(filePath);
+        FileInfo[] info = dir.GetFiles("*.json");
+        foreach (FileInfo file in info)
+        {
+            selectionDropdownEditor.options.Add(new TMP_Dropdown.OptionData(file.Name));
+            selectionDropdownScouter.options.Add(new TMP_Dropdown.OptionData(file.Name));
+        }
+
+        selectionDropdownEditor.value = 0;
+        selectionDropdownEditor.RefreshShownValue();
+
+        selectionDropdownScouter.value = 0;
+        selectionDropdownScouter.RefreshShownValue();
+    }
+
     // Could convert these to static by inputting variableContainer, filePath
     [EditorCools.Button]
-    public void Save()
+    public void Save(string fileName)
     {
         List<VariableGeneralInformation> savedInformation = new();
 
-        for (int i = 0; i < variableContainer.childCount; i++)
+        for (int i = 0; i < editorContainer.childCount; i++)
         {
-            GeneralVariable generalVariable = variableContainer.GetChild(i).GetComponent<GeneralVariable>();
+            GeneralVariable generalVariable = editorContainer.GetChild(i).GetComponent<GeneralVariable>();
             Type type = generalVariable.GetType();
             string content;
 
@@ -57,14 +96,21 @@ public class PresetJsonCode : MonoBehaviour
             savedInformation.Add(new VariableGeneralInformation(type, generalVariable.infoName, content));
         }
 
-        File.WriteAllText(filePath, JsonHelper.ToJson(savedInformation.ToArray()));
+        File.WriteAllText(Path.Combine(filePath, fileName), JsonHelper.ToJson(savedInformation.ToArray()));
+
+        ReloadDropdown();
     }
     // Load would also need a PresetCode instance or have prefab GameObjects to be static
     [EditorCools.Button]
-    public void Load()
+    public void Load(Transform destination, string fileName)
     {
+        foreach(Transform child in destination)
+        {
+            Destroy(child.gameObject);
+        }
+        
         string jsonContent = "{}";
-        using (StreamReader reader = new StreamReader(filePath))
+        using (StreamReader reader = new StreamReader(Path.Combine(filePath, fileName)))
         {
             jsonContent = reader.ReadToEnd();
         }
@@ -76,12 +122,15 @@ public class PresetJsonCode : MonoBehaviour
             GameObject prefab;
             Debug.Log(savedInformation[i].type);
 
+            GeneralVariable variable;
+
             switch (savedInformation[i].type.ToString())
             {
 
                 case "IntegerVariable":
                     prefab = integerPrefab;
                     IntegerVariable integerVariable = prefab.GetComponent<IntegerVariable>();
+                    variable = integerVariable;
                     SavedIntegerInfo savedIntegerInfo =
                         JsonHelper.FromJson<SavedIntegerInfo>(savedInformation[i].content)[0];
                     integerVariable.minimumValueExists = savedIntegerInfo.minimumValueExists;
@@ -94,6 +143,7 @@ public class PresetJsonCode : MonoBehaviour
                 case "BooleanVariable":
                     prefab = booleanPrefab;
                     BooleanVariable booleanVariable = prefab.GetComponent<BooleanVariable>();
+                    variable = booleanVariable;
                     // Could just be set to false, but if anyone decides to change how default values are calculated, we only need to
                     // change in save and not in both
                     booleanVariable.value.isOn = bool.Parse(savedInformation[i].content);
@@ -103,6 +153,7 @@ public class PresetJsonCode : MonoBehaviour
                 case "DropdownVariable":
                     prefab = dropdownPrefab;
                     DropdownVariable dropdownVariable = prefab.GetComponent<DropdownVariable>();
+                    variable = dropdownVariable;
                     dropdownVariable.dropdown.options = new List<TMP_Dropdown.OptionData>(JsonHelper.FromJson<TMP_Dropdown.OptionData>(savedInformation[i].content));
                     variables.Add(dropdownVariable);
                     break;
@@ -110,6 +161,7 @@ public class PresetJsonCode : MonoBehaviour
                 case "TextVariable":
                     prefab = textPrefab;
                     TextVariable textVariable = prefab.GetComponent<TextVariable>();
+                    variable = textVariable;
                     textVariable.inputField.text = savedInformation[i].content;
                     break;
 
@@ -118,7 +170,8 @@ public class PresetJsonCode : MonoBehaviour
                     continue;
             }
 
-            Instantiate(prefab, variableContainer);
+            variable.infoName = savedInformation[i].name;
+            Instantiate(prefab, destination);
         }
     }
 

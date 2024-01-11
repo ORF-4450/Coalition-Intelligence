@@ -24,7 +24,6 @@ public class IntegerVariableModifier : GeneralVariableModifier<IntegerVariable>
     protected override void SetToVariableValues()
     {
         base.SetToVariableValues();
-        Debug.Log("Var");
         minimumValueExistsVisualizer.isOn = Variable.minimumValueExists;
         minimumValueVisualizer.text = Variable.minimumValue.ToString();
         maximumValueExistsVisualizer.isOn = Variable.maximumValueExists;

@@ -6,7 +6,7 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
 {
     [SerializeField] private GameObject prefab;
     protected T defaultVariable;
-    [SerializeField] private TextMeshProUGUI nameVisualizer;
+    [SerializeField] private TMP_InputField nameVisualizer;
     
     [SerializeField] private GameObject menuLocation;
 
@@ -53,10 +53,12 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     }
     protected virtual void SetToVariableValues()
     {
+        Debug.Log("Var");
         nameVisualizer.text = Variable.infoName;
     }
     protected virtual void SetToDefaultValues()
     {
+        Debug.Log("Def");
         nameVisualizer.text = "";
     }
     protected virtual void SaveVariable()
@@ -74,17 +76,19 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     }
     protected void DeleteVariable()
     {
-        Destroy(gameObject);
+        Destroy(Variable.gameObject);
         ExitMenu();
     }
 
     protected virtual void ExitMenu()
     {
+        Variable = null;
+        SetToDefaultValues();
         typeMenus.ChangeMenu(typeMenus.defaultMenu);
     }
     protected virtual void CancelChanges()
     {
-        typeMenus.ChangeMenu(typeMenus.defaultMenu);
+        ExitMenu();
     }
     protected void Destroy()
     {

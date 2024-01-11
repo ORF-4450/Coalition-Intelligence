@@ -1,9 +1,10 @@
 using TMPro;
+using UnityEngine;
 
 public class TextVariableModifier : GeneralVariableModifier<TextVariable>
 {
     protected override TextVariable Variable { get => _Variable; set => _Variable = value; }
-    protected TMP_InputField textVisualizer;
+    [SerializeField] protected TMP_InputField textVisualizer;
 
     protected override void SetToVariableValues()
     {

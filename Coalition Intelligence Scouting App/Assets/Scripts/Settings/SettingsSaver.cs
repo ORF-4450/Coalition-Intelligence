@@ -14,6 +14,7 @@ public class SettingsSaver : MonoBehaviour
     public TMP_InputField apiKeyField;
     public TMP_InputField yearField;
     public string filePath;
+    public PresetJsonCode pJC;
 
     public ConfigDevice currentConfigDevice = new();
 
@@ -107,6 +108,7 @@ public class SettingsSaver : MonoBehaviour
     {
         currentConfigDevice.apiKey = apiKeyField.text;
         currentConfigDevice.year = yearField.text;
+        currentConfigDevice.preset = pJC.selectionDropdownScouter.value;
 
 
         StreamWriter writer = new StreamWriter(filePath + "DeviceConfig.json");
@@ -124,6 +126,11 @@ public class SettingsSaver : MonoBehaviour
 
         yearField.text = currentConfigDevice.year;
         apiKeyField.text = currentConfigDevice.apiKey;
+
+        pJC.selectionDropdownScouter.value = currentConfigDevice.preset;
+
+        pJC.Load(pJC.scouterContainer, pJC.selectionDropdownScouter.options[currentConfigDevice.preset].text);
+        pJC.ReloadDropdown();
     }
 
     public ConfigDevice ReadConfigDevice()
@@ -156,4 +163,5 @@ public class ConfigDevice
 {
     public string apiKey;
     public string year;
+    public int preset;
 }

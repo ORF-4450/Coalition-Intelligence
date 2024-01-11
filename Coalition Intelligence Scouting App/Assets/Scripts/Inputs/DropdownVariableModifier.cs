@@ -50,9 +50,7 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
         base.SaveVariable();
         Variable.dropdown.ClearOptions();
         for (int i = 0; i < dropdownOptionVisualizers.Count; i++)
-        {
             Variable.dropdown.options.Add(new TMP_Dropdown.OptionData(dropdownOptionVisualizers[i].textVisualizer.text));
-        }
     }
 
     protected void AddVisualizedDropdownOption()
@@ -80,10 +78,8 @@ public class DropdownVariableModifier : GeneralVariableModifier<DropdownVariable
 
     protected void ClearDropdownOptions()
     {
-        for (int i = dropdownOptionVisualizers.Count; i > 0; i--)
-        {
+        for (int i = dropdownOptionVisualizers.Count - 1; i >= 0; i--)
             DestroyDropdownOption(i);
-        }
     }
     public void DestroyDropdownOption(int index)
     {

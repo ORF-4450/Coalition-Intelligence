@@ -1,10 +1,11 @@
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BooleanVariableModifier : GeneralVariableModifier<BooleanVariable>
 {
     protected override BooleanVariable Variable { get => _Variable; set => _Variable = value; }
 
-    Toggle booleanVisualizer;
+    [SerializeField] Toggle booleanVisualizer;
 
     protected override void SetToVariableValues()
     {
