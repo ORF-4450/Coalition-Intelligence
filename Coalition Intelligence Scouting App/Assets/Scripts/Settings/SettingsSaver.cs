@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using TMPro;
+using System.Linq;
 
 public class SettingsSaver : MonoBehaviour
 {
@@ -13,12 +14,16 @@ public class SettingsSaver : MonoBehaviour
     public TMP_Dropdown userField;
     public TMP_InputField apiKeyField;
     public TMP_InputField yearField;
+    public TMP_InputField teamField;
     public string filePath;
     public PresetJsonCode pJC;
+    public API_Interface API_int;
 
     public ConfigDevice currentConfigDevice = new();
 
     public ConfigUser defaultConfig;
+
+    public bool HasInternet;
 
     void Awake()
     {
@@ -35,6 +40,8 @@ public class SettingsSaver : MonoBehaviour
         }
 
         LoadConfigDevice();
+        API_int.ReadFromFile(true);
+        API_int.AddListeners();
     }
 
     public ConfigUser CurrentConfigUser()
@@ -109,6 +116,8 @@ public class SettingsSaver : MonoBehaviour
         currentConfigDevice.apiKey = apiKeyField.text;
         currentConfigDevice.year = yearField.text;
         currentConfigDevice.preset = pJC.selectionDropdownScouter.value;
+        currentConfigDevice.team = teamField.text;
+        currentConfigDevice.competition = API_int.compDrop.value;
 
 
         StreamWriter writer = new StreamWriter(filePath + "DeviceConfig.json");
@@ -118,6 +127,8 @@ public class SettingsSaver : MonoBehaviour
         writer.Close();
 
         Debug.Log("Saved DeviceConfig.json");
+
+        API_int.ResetTeamDrop(API_int.CompHolder.Comps[API_int.compDrop.value]);
     }
 
     public void LoadConfigDevice()
@@ -126,6 +137,8 @@ public class SettingsSaver : MonoBehaviour
 
         yearField.text = currentConfigDevice.year;
         apiKeyField.text = currentConfigDevice.apiKey;
+        teamField.text = currentConfigDevice.team;
+        API_int.compDrop.value = currentConfigDevice.competition;
 
         pJC.selectionDropdownScouter.value = currentConfigDevice.preset;
 
@@ -159,9 +172,12 @@ public class ConfigUser
 
 }
 
+[System.Serializable]
 public class ConfigDevice
 {
     public string apiKey;
     public string year;
     public int preset;
+    public string team;
+    public int competition;
 }
