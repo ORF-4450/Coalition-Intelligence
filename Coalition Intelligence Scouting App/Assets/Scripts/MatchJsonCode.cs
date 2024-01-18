@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using TMPro;
 
 public class MatchJsonCode : MonoBehaviour
 {
     public Transform variableContainer;
+    public TextMeshProUGUI matchNumber;
+
+    public SettingsSaver SS;
     [SerializeField] string[] directorySeperators;
     string filePath { get => Path.Combine(Application.persistentDataPath, Path.Combine(directorySeperators)); }
 
@@ -46,7 +50,7 @@ public class MatchJsonCode : MonoBehaviour
             savedInformation.Add(new MatchInformation(generalVariable.infoName, content));
         }
 
-        File.WriteAllText(filePath, JsonHelper.ToJson(savedInformation.ToArray()));
+        File.WriteAllText(filePath + matchNumber.text + SS.API_int.CompHolder.Comps[SS.currentConfigDevice.competition].name +  ".json", JsonHelper.ToJson(savedInformation.ToArray()));
     }
 
     [Serializable]

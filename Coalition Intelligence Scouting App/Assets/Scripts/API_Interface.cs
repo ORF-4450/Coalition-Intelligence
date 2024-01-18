@@ -108,8 +108,8 @@ public class API_Interface : MonoBehaviour
 
         foreach (SimpleTeamsInEvent team in comp.teams)
         {
-            buffer.Add(new TMP_Dropdown.OptionData(team.nickname + " - " + team.team_number));
-            Debug.Log("Added " + team.nickname + " - " + team.team_number + " to team dropdown");
+            buffer.Add(new TMP_Dropdown.OptionData(team.team_number + " - " + team.nickname));
+            Debug.Log("Added " + team.team_number + " - " + team.nickname + " to team dropdown");
         }
         teamDrop.options = buffer;
         teamDrop.RefreshShownValue();
@@ -131,8 +131,10 @@ public class API_Interface : MonoBehaviour
         {
             List<SimpleTeamsInEvent> teamsBuffer = new();
             yield return StartCoroutine(API.GetInformation<SimpleTeamsInEvent>(teamsBuffer, "/event/" + comp.key + "/teams/simple"));
+
+            teamsBuffer.Sort(sortTeamsVal);
             teamsBuffer.Insert(0, defaultTeam);
-            
+
             compBuffer.Comps.Add(new Competition(comp.name, comp.key, teamsBuffer));
         }
 
@@ -148,6 +150,15 @@ public class API_Interface : MonoBehaviour
         }
         
         ReadFromFile(true);
+    }
+
+    private static int sortTeamsVal(SimpleTeamsInEvent team1, SimpleTeamsInEvent team2)
+    {
+        int buffer = 0;
+        if (team1.team_number < team2.team_number) buffer = -1;
+        if (team1.team_number == team2.team_number) buffer = 0;
+        if (team1.team_number > team2.team_number) buffer = 1;
+        return buffer;
     }
 }
 
