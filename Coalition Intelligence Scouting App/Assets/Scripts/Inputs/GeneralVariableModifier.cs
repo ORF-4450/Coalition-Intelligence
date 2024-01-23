@@ -7,7 +7,8 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     [SerializeField] private GameObject prefab;
     protected T defaultVariable;
     [SerializeField] private TMP_InputField nameVisualizer;
-    
+    [SerializeField] private TMP_InputField keyVisualizer;
+
     [SerializeField] private GameObject menuLocation;
 
     [SerializeField] public Button saveChanges;
@@ -53,18 +54,19 @@ public abstract class GeneralVariableModifier<T> : MonoBehaviour where T : Gener
     }
     protected virtual void SetToVariableValues()
     {
-        Debug.Log("Var");
         nameVisualizer.text = Variable.infoName;
+        keyVisualizer.text = Variable.infoKey;
     }
     protected virtual void SetToDefaultValues()
     {
-        Debug.Log("Def");
         nameVisualizer.text = "";
+        keyVisualizer.text = "";
     }
     protected virtual void SaveVariable()
     {
         if (Variable == null) Variable = defaultVariable;
         Variable.infoName = nameVisualizer.text;
+        Variable.infoKey = keyVisualizer.text;
     }
     protected void CreateVariable()
     {
