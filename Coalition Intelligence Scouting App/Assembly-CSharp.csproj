@@ -70,7 +70,6 @@
     <Compile Include="Assets\Scripts\EditorCools\EditorCools\DropdownStringAttribute\DropdownAttribute.cs" />
     <Compile Include="Assets\Scripts\MenuSwapper.cs" />
     <Compile Include="Assets\Scripts\Settings\SettingsSaver.cs" />
-    <Compile Include="Assets\Scripts\CSVfileCreatorProofOfConcept.cs" />
     <Compile Include="Assets\Scripts\Settings\FontHolder.cs" />
     <Compile Include="Assets\Scripts\Settings\ColorHolder.cs" />
     <Compile Include="Assets\Scripts\APIGetter.cs" />

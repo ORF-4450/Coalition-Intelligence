@@ -100,6 +100,12 @@ public class API_Interface : MonoBehaviour
         Debug.Log("Reset Team Drop");
     }
 
+    public void SetTeamToDefault()
+    {
+        teamDrop.value = 0;
+        teamDrop.RefreshShownValue();
+    }
+
     public void ResetTeamDrop(Competition comp)
     {
         teamDrop.value = 0;
