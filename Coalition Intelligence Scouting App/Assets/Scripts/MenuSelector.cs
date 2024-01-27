@@ -22,6 +22,7 @@ public class MenuSelector : MonoBehaviour
             mb.button.onClick.AddListener(() => ChangeMenu(mb.menuIndex));
         }
         ChangeMenu(menuSwapper.defaultMenu,false);
+        SetDefaultVisibility();
     }
 
     void ChangeMenu(int ID)
@@ -70,6 +71,14 @@ public class MenuSelector : MonoBehaviour
         Debug.Log("Created Buttons");
     }
 
+    void SetDefaultVisibility()
+    {
+        for (int i = 0; i < menuButtons.Count; i++ )
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(menuButtons[i].defaultVisibility);
+        }
+    }
+
     void Destroy()
     {
         foreach (MenuButton mb in menuButtons)
@@ -100,4 +109,6 @@ public class MenuButton
     public int menuIndex;
 
     public Texture icon;
+
+    public bool defaultVisibility;
 }

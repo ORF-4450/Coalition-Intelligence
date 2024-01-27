@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameVisualizer: {fileID: 4022162784068838380}
+  infoKey: 
   inputField: {fileID: 2091678825139107666}
 --- !u!1 &1558547492518019668
 GameObject:

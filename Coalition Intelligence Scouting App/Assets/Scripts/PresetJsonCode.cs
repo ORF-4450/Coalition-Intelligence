@@ -30,14 +30,25 @@ public class PresetJsonCode : MonoBehaviour
         saveJson.onClick.AddListener(() => Save(fileNameContainerEditor.text + ".json"));
         loadJsonEditor.onClick.AddListener(() => Load(editorContainer, selectionDropdownEditor.options[selectionDropdownEditor.value].text));
         loadJsonScouter.onClick.AddListener(() => Load(scouterContainer, selectionDropdownScouter.options[selectionDropdownScouter.value].text));
-        ReloadDropdown();
     }
 
     [EditorCools.Button]
     public void ReloadDropdown()
     {
+        ReloadDropdown(0);
+    }
+
+    public void ReloadDropdown(int defaultValue)
+    {
+        ReloadDropdown(defaultValue,"");
+    }
+
+    public void ReloadDropdown(int defaultValue, string savedPreset)
+    {
         selectionDropdownEditor.ClearOptions();
         selectionDropdownScouter.ClearOptions();
+
+        selectionDropdownScouter.value = defaultValue;
 
         DirectoryInfo dir = new DirectoryInfo(filePath);
         FileInfo[] info = dir.GetFiles("*.json");
@@ -45,12 +56,13 @@ public class PresetJsonCode : MonoBehaviour
         {
             selectionDropdownEditor.options.Add(new TMP_Dropdown.OptionData(file.Name));
             selectionDropdownScouter.options.Add(new TMP_Dropdown.OptionData(file.Name));
+
+            if (file.Name == savedPreset) selectionDropdownScouter.value = selectionDropdownScouter.options.Count - 1;
         }
 
         selectionDropdownEditor.value = 0;
         selectionDropdownEditor.RefreshShownValue();
 
-        selectionDropdownScouter.value = 0;
         selectionDropdownScouter.RefreshShownValue();
     }
 
@@ -93,10 +105,10 @@ public class PresetJsonCode : MonoBehaviour
                     continue;
             }
 
-            savedInformation.Add(new VariableGeneralInformation(type, generalVariable.infoName, content));
+            savedInformation.Add(new VariableGeneralInformation(type, generalVariable.infoName, content, generalVariable.infoKey));
         }
 
-        File.WriteAllText(Path.Combine(filePath, fileName), JsonHelper.ToJson(savedInformation.ToArray()));
+        File.WriteAllText(Path.Combine(filePath, fileName), JsonHelper.ToJson(savedInformation.ToArray(), true));
 
         ReloadDropdown();
     }
@@ -104,74 +116,80 @@ public class PresetJsonCode : MonoBehaviour
     [EditorCools.Button]
     public void Load(Transform destination, string fileName)
     {
-        foreach(Transform child in destination)
+        if (File.Exists(Path.Combine(filePath, fileName)))
         {
-            Destroy(child.gameObject);
-        }
-        
-        string jsonContent = "{}";
-        using (StreamReader reader = new StreamReader(Path.Combine(filePath, fileName)))
-        {
-            jsonContent = reader.ReadToEnd();
-        }
-        VariableGeneralInformation[] savedInformation = JsonHelper.FromJson<VariableGeneralInformation>(jsonContent);
-        List<GeneralVariable> variables = new();
-
-        for (int i = 0; i < savedInformation.Length; i++)
-        {
-            GameObject prefab;
-            Debug.Log(savedInformation[i].type);
-
-            GeneralVariable variable;
-
-            switch (savedInformation[i].type.ToString())
+            foreach(Transform child in destination)
             {
-
-                case "IntegerVariable":
-                    prefab = integerPrefab;
-                    IntegerVariable integerVariable = prefab.GetComponent<IntegerVariable>();
-                    variable = integerVariable;
-                    SavedIntegerInfo savedIntegerInfo =
-                        JsonHelper.FromJson<SavedIntegerInfo>(savedInformation[i].content)[0];
-                    integerVariable.minimumValueExists = savedIntegerInfo.minimumValueExists;
-                    integerVariable.minimumValue = savedIntegerInfo.minimumValue;
-                    integerVariable.maximumValueExists = savedIntegerInfo.maximumValueExists;
-                    integerVariable.maximumValue = savedIntegerInfo.maximumValue;
-                    variables.Add(integerVariable);
-                    break;
-
-                case "BooleanVariable":
-                    prefab = booleanPrefab;
-                    BooleanVariable booleanVariable = prefab.GetComponent<BooleanVariable>();
-                    variable = booleanVariable;
-                    // Could just be set to false, but if anyone decides to change how default values are calculated, we only need to
-                    // change in save and not in both
-                    booleanVariable.value.isOn = bool.Parse(savedInformation[i].content);
-                    variables.Add(booleanVariable);
-                    break;
-
-                case "DropdownVariable":
-                    prefab = dropdownPrefab;
-                    DropdownVariable dropdownVariable = prefab.GetComponent<DropdownVariable>();
-                    variable = dropdownVariable;
-                    dropdownVariable.dropdown.options = new List<TMP_Dropdown.OptionData>(JsonHelper.FromJson<TMP_Dropdown.OptionData>(savedInformation[i].content));
-                    variables.Add(dropdownVariable);
-                    break;
-
-                case "TextVariable":
-                    prefab = textPrefab;
-                    TextVariable textVariable = prefab.GetComponent<TextVariable>();
-                    variable = textVariable;
-                    textVariable.inputField.text = savedInformation[i].content;
-                    break;
-
-                default:
-                    Debug.LogWarning($"{savedInformation[i].name} has no functionality for saving presets");
-                    continue;
+                Destroy(child.gameObject);
             }
+            
+            string jsonContent = "{}";
+            using (StreamReader reader = new StreamReader(Path.Combine(filePath, fileName)))
+            {
+                jsonContent = reader.ReadToEnd();
+            }
+            VariableGeneralInformation[] savedInformation = JsonHelper.FromJson<VariableGeneralInformation>(jsonContent);
+            List<GeneralVariable> variables = new();
 
-            variable.infoName = savedInformation[i].name;
-            Instantiate(prefab, destination);
+            for (int i = 0; i < savedInformation.Length; i++)
+            {
+                GameObject prefab;
+                Debug.Log(savedInformation[i].type);
+
+                GeneralVariable variable;
+
+                switch (savedInformation[i].type.ToString())
+                {
+
+                    case "IntegerVariable":
+                        prefab = integerPrefab;
+                        IntegerVariable integerVariable = prefab.GetComponent<IntegerVariable>();
+                        variable = integerVariable;
+                        SavedIntegerInfo savedIntegerInfo =
+                            JsonHelper.FromJson<SavedIntegerInfo>(savedInformation[i].content)[0];
+                        integerVariable.minimumValueExists = savedIntegerInfo.minimumValueExists;
+                        integerVariable.minimumValue = savedIntegerInfo.minimumValue;
+                        integerVariable.maximumValueExists = savedIntegerInfo.maximumValueExists;
+                        integerVariable.maximumValue = savedIntegerInfo.maximumValue;
+                        variables.Add(integerVariable);
+                        break;
+
+                    case "BooleanVariable":
+                        prefab = booleanPrefab;
+                        BooleanVariable booleanVariable = prefab.GetComponent<BooleanVariable>();
+                        variable = booleanVariable;
+                        // Could just be set to false, but if anyone decides to change how default values are calculated, we only need to
+                        // change in save and not in both
+                        booleanVariable.value.isOn = bool.Parse(savedInformation[i].content);
+                        variables.Add(booleanVariable);
+                        break;
+
+                    case "DropdownVariable":
+                        prefab = dropdownPrefab;
+                        DropdownVariable dropdownVariable = prefab.GetComponent<DropdownVariable>();
+                        variable = dropdownVariable;
+                        dropdownVariable.dropdown.options = new List<TMP_Dropdown.OptionData>(JsonHelper.FromJson<TMP_Dropdown.OptionData>(savedInformation[i].content));
+                        variables.Add(dropdownVariable);
+                        break;
+
+                    case "TextVariable":
+                        prefab = textPrefab;
+                        TextVariable textVariable = prefab.GetComponent<TextVariable>();
+                        variable = textVariable;
+                        textVariable.inputField.text = savedInformation[i].content;
+                        break;
+
+                    default:
+                        Debug.LogWarning($"{savedInformation[i].name} has no functionality for saving presets");
+                        continue;
+                }
+
+                variable.infoName = savedInformation[i].name;
+                variable.infoKey = savedInformation[i].key;
+                Instantiate(prefab, destination);
+            }
+        } else {
+            Debug.Log("No preset file found for " + fileName);
         }
     }
 
@@ -184,12 +202,14 @@ public class PresetJsonCode : MonoBehaviour
         public Type type { get => Type.GetType(_type); set => _type = value.ToString(); }
         public string name;
         public string content;
+        public string key;
 
-        public VariableGeneralInformation(Type type, string name, string content)
+        public VariableGeneralInformation(Type type, string name, string content, string key)
         {
             this.type = type;
             this.name = name;
             this.content = content;
+            this.key = key;
         }
     }
 

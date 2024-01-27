@@ -9,12 +9,12 @@ public class EnableOnValue : MonoBehaviour
     public List<ObjectElement> objects;
     TMP_Dropdown dropdown;
 
-    public void Start()
+    public void OnEnable()
     {
         dropdown = GetComponent<TMP_Dropdown>();
         Check();
     }
-
+    
     public void Check()
     {
         foreach (ObjectElement element in objects)

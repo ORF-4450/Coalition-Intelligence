@@ -18,6 +18,8 @@ public class SettingsSaver : MonoBehaviour
     public string filePath;
     public PresetJsonCode pJC;
     public API_Interface API_int;
+    public TextMeshProUGUI versionDisplay;
+    public string version;
 
     public ConfigDevice currentConfigDevice = new();
 
@@ -42,6 +44,9 @@ public class SettingsSaver : MonoBehaviour
         LoadConfigDevice();
         API_int.ReadFromFile(true);
         API_int.AddListeners();
+
+        versionDisplay.text = version;
+        versionDisplay.gameObject.SetActive(true);
     }
 
     public ConfigUser CurrentConfigUser()
@@ -115,7 +120,7 @@ public class SettingsSaver : MonoBehaviour
     {
         currentConfigDevice.apiKey = apiKeyField.text;
         currentConfigDevice.year = yearField.text;
-        currentConfigDevice.preset = pJC.selectionDropdownScouter.value;
+        currentConfigDevice.preset = pJC.selectionDropdownScouter.options[pJC.selectionDropdownScouter.value].text;
         currentConfigDevice.team = teamField.text;
         currentConfigDevice.competition = API_int.compDrop.value;
 
@@ -140,10 +145,8 @@ public class SettingsSaver : MonoBehaviour
         teamField.text = currentConfigDevice.team;
         API_int.compDrop.value = currentConfigDevice.competition;
 
-        pJC.selectionDropdownScouter.value = currentConfigDevice.preset;
-
-        pJC.Load(pJC.scouterContainer, pJC.selectionDropdownScouter.options[currentConfigDevice.preset].text);
-        pJC.ReloadDropdown();
+        pJC.Load(pJC.scouterContainer, currentConfigDevice.preset);
+        pJC.ReloadDropdown(0, currentConfigDevice.preset);
     }
 
     public ConfigDevice ReadConfigDevice()
@@ -177,7 +180,7 @@ public class ConfigDevice
 {
     public string apiKey;
     public string year;
-    public int preset;
+    public string preset;
     public string team;
     public int competition;
 }
