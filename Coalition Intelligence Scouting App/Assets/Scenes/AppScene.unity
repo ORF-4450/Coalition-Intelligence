@@ -5606,7 +5606,19 @@ MonoBehaviour:
       isEnabled: 1
     onMenuSelect:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1420296178}
+          m_TargetAssemblyTypeName: PresetJsonCode, Assembly-CSharp
+          m_MethodName: LoadScouter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   currentMenu: 2
   defaultMenu: 2
 --- !u!222 &878951491
@@ -15175,7 +15187,7 @@ MonoBehaviour:
   pJC: {fileID: 1420296178}
   API_int: {fileID: 1131467328}
   versionDisplay: {fileID: 2916792085502307209}
-  version: Pre-Alpha 27.1.24 DEV
+  version: Pre-Alpha 29.1.24 DEV
   currentConfigDevice:
     apiKey: 
     year: 

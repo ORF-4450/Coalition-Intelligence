@@ -112,6 +112,12 @@ public class PresetJsonCode : MonoBehaviour
 
         ReloadDropdown();
     }
+
+    public void LoadScouter()
+    {
+        Load(scouterContainer, selectionDropdownScouter.options[selectionDropdownScouter.value].text);   
+    }
+
     // Load would also need a PresetCode instance or have prefab GameObjects to be static
     [EditorCools.Button]
     public void Load(Transform destination, string fileName)
