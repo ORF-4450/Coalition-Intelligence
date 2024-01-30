@@ -6,7 +6,7 @@ using System;
 
 public class MenuSelector : MonoBehaviour
 {
-    [SerializeField] private MenuSwapper menuSwapper;
+    [SerializeField] public MenuSwapper menuSwapper;
     [SerializeField] public ColorHolder CH;
 
     [SerializeField] private GameObject prefab;
@@ -25,7 +25,15 @@ public class MenuSelector : MonoBehaviour
         SetDefaultVisibility();
     }
 
-    void ChangeMenu(int ID)
+    public void ChangeMenu()
+    {
+        foreach (MenuButton mb in menuButtons)
+        {
+            mb.button.interactable = (menuSwapper.currentMenu != mb.menuIndex);
+        }
+    }
+
+    public void ChangeMenu(int ID)
     {
         foreach (MenuButton mb in menuButtons)
         {
@@ -34,7 +42,7 @@ public class MenuSelector : MonoBehaviour
         menuSwapper.ChangeMenu(ID);
     }
 
-    void ChangeMenu(int ID, bool changeMenu)
+    public void ChangeMenu(int ID, bool changeMenu)
     {
         foreach (MenuButton mb in menuButtons)
         {

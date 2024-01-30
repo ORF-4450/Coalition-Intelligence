@@ -9,7 +9,9 @@ public class MatchJsonCode : MonoBehaviour
     public Transform variableContainer;
     public TMP_InputField matchNumber;
 
-    public MenuSwapper MS;
+    public MenuSelector menuSelector;
+    public MenuSwapper MS { get => menuSelector.menuSwapper; }
+    
     
     public string team { get => SS.API_int.teamDrop.options[SS.API_int.teamDrop.value].text.Split(' ')[0]; }
 
@@ -79,7 +81,13 @@ public class MatchJsonCode : MonoBehaviour
 
         FormatData(compFilePath,compFilePath + "formattedData.csv",keyPath);
 
-        MS.ChangeMenu(MS.defaultMenu);
+        if (menuSelector != null)
+        {
+            menuSelector.ChangeMenu(MS.defaultMenu);
+        } else {
+            MS.ChangeMenu(MS.defaultMenu);
+        }
+
         SS.API_int.SetTeamToDefault();
     }
 
