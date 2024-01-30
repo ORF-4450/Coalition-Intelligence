@@ -41,6 +41,15 @@ public class SettingsSaver : MonoBehaviour
             SaveConfigUser(defaultConfig);
         }
 
+        if (!File.Exists(filePath + "DeviceConfig.json"))
+        {
+            StreamWriter writer = new StreamWriter(filePath + "DeviceConfig.json");
+            writer.WriteLine(JsonUtility.ToJson(currentConfigDevice));
+
+            writer.Flush();
+            writer.Close();
+        }
+
         LoadConfigDevice();
         API_int.ReadFromFile(true);
         API_int.AddListeners();
@@ -120,9 +129,9 @@ public class SettingsSaver : MonoBehaviour
     {
         currentConfigDevice.apiKey = apiKeyField.text;
         currentConfigDevice.year = yearField.text;
-        currentConfigDevice.preset = pJC.selectionDropdownScouter.options[pJC.selectionDropdownScouter.value].text;
+        if (pJC.selectionDropdownScouter.options.Count > 0) currentConfigDevice.preset = pJC.selectionDropdownScouter.options[pJC.selectionDropdownScouter.value].text;
         currentConfigDevice.team = teamField.text;
-        currentConfigDevice.competition = API_int.compDrop.value;
+        if (API_int.compDrop.options.Count > 0) currentConfigDevice.competition = API_int.compDrop.value;
 
 
         StreamWriter writer = new StreamWriter(filePath + "DeviceConfig.json");
