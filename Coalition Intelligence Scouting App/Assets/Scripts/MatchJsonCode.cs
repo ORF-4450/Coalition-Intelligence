@@ -79,7 +79,7 @@ public class MatchJsonCode : MonoBehaviour
         string keyPath = compFilePath + "keyConfig.csv";
         File.WriteAllText(keyPath, String.Join(',',keys));
 
-        FormatData(compFilePath,compFilePath + "formattedData.csv",keyPath);
+        FormatData(compFilePath,compFilePath + "formattedData_" + SystemInfo.deviceName + ".csv",keyPath);
 
         if (menuSelector != null)
         {
