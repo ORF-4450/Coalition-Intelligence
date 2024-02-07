@@ -17,9 +17,14 @@ public class EnableOnValue : MonoBehaviour
     
     public void Check()
     {
+        Trigger(dropdown.options[dropdown.value].text);
+    }
+
+    public void Trigger(string input)
+    {
         foreach (ObjectElement element in objects)
         {
-            bool enable = (dropdown.options[dropdown.value].text == element.enableOnValue);
+            bool enable = (input == element.enableOnValue);
             if (enable)
             {
                 element.objectToChange.SetActive(element.enable);
