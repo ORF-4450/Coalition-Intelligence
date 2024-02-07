@@ -50,5 +50,7 @@ public class SetUsernames : MonoBehaviour
         }
         
         dropdown.options = options;
+
+        gameObject.GetComponent<EnableOnValue>().Check();
     }
 }

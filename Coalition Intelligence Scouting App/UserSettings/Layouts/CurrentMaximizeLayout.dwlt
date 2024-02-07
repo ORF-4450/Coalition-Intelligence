@@ -235,9 +235,9 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 300.66666}
-      m_SelectedIDs: 9c880300
-      m_LastClickedID: 231580
+      scrollPos: {x: 0, y: 88.16666}
+      m_SelectedIDs: b8540000
+      m_LastClickedID: 0
       m_ExpandedIDs: a630fdffe430fdff4e32fdff4818feff8818feffee19feffa849fefff449feff5a4bfeff726bfeffbe6bfeff246dfeffe28ffeff3690feff9c91feffc8aafeff26abfeff8cacfeff5230ffffa830ffff0e32fffff855ffff5656ffffbc57ffff7c7dffffd27dffff387fffffeea5ffff6cd5ffffa0d5ffffead6ffff5cdaffff90dafffffadbffffdee6ffff12e7ffff9ee8ffff02fbffff82690000f0690000e46a0000786c0000b26c000072cd0000d4ce0000fece000012d0000056d00000dcd000006cd20000fad2000058d3000026d40000f0d400001ed5000078d50000a0d50000c0d50000ded5000052370100b4380100de380100363a0100803f0100be3f0100306601009e66010092670100d0680100166c0100dc6d010050420200b24302009a960200c896020018970200369702002a980200ba9802003e99020086990200ac990200be990200f69a0200b69d0200f69e02009e840300a88403000e8503000286030096870300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -809,7 +809,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Images/Logos
+    - Assets/Fonts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 57
   m_LastFolders:
-  - Assets/Images/Logos
+  - Assets/Fonts
   m_LastFoldersGridSize: 57
   m_LastProjectPath: C:\Users\husmannsa\Documents\Coalition-Intelligence\Coalition
     Intelligence Scouting App
@@ -825,8 +825,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: aa310300
-    m_LastClickedID: 209322
+    m_SelectedIDs: ea5f0000
+    m_LastClickedID: 24554
     m_ExpandedIDs: 000000009c5f00009e5f0000ba5f0000e85f0000ec5f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -880,9 +880,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9c880300
-    m_LastClickedInstanceID: 231580
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: b8540000
+    m_LastClickedInstanceID: 21688
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 406
-    width: 1037.6666
+    width: 757.6667
     height: 233.00003
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -964,8 +964,8 @@ MonoBehaviour:
     y: 0
     width: 521.3333
     height: 587.3334
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
