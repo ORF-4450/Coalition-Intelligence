@@ -19,7 +19,7 @@ public class SettingsSaver : MonoBehaviour
     public PresetJsonCode pJC;
     public API_Interface API_int;
     public TextMeshProUGUI versionDisplay;
-    public string version;
+    public string version { get => Application.version;}
 
     public ConfigDevice currentConfigDevice = new();
 
