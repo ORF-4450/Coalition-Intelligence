@@ -236,9 +236,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: a630fdffe430fdff4e32fdff4818feff8818feffee19feffa849fefff449feff5a4bfeff726bfeffbe6bfeff246dfeffe28ffeff3690feff9c91feffc8aafeff26abfeff8cacfeff5230ffffa830ffff0e32fffff855ffff5656ffffbc57ffff7c7dffffd27dffff387fffffeea5ffff6cd5ffffa0d5ffffead6ffff5cdaffff90dafffffadbffffdee6ffff12e7ffff9ee8ffff02fbffff82690000f0690000e46a0000786c0000b26c000072cd0000d4ce0000fece000012d0000056d00000dcd000006cd20000fad2000058d3000026d40000f0d400001ed5000078d50000a0d50000c0d50000ded5000052370100b4380100de380100363a0100803f0100be3f0100306601009e66010092670100d0680100166c0100dc6d010050420200b24302009a960200c896020018970200369702002a980200ba9802003e99020086990200ac990200be990200f69a0200b69d0200f69e0200
+      m_SelectedIDs: bc890300
+      m_LastClickedID: 231868
+      m_ExpandedIDs: a630fdffe430fdff4e32fdff4818feff8818feffee19feffa849fefff449feff5a4bfeff726bfeffbe6bfeff246dfeffe28ffeff3690feff9c91feffc8aafeff26abfeff8cacfeff5230ffffa830ffff0e32fffff855ffff5656ffffbc57ffff7c7dffffd27dffff387fffffeea5ffff6cd5ffffa0d5ffffead6ffff5cdaffff90dafffffadbffffdee6ffff12e7ffff9ee8ffff02fbffff82690000f0690000e46a0000786c0000b26c000072cd0000d4ce0000fece000012d0000056d00000dcd000006cd20000fad2000058d3000026d40000f0d400001ed5000078d50000a0d50000c0d50000ded5000052370100b4380100de380100363a0100803f0100be3f0100306601009e66010092670100d0680100166c0100dc6d010050420200b24302009a960200c896020018970200369702002a980200ba9802003e99020086990200ac990200be990200f69a0200b69d0200f69e02009e840300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -880,10 +880,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 9e840300
+    m_LastClickedInstanceID: 230558
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000a4310300
+    m_ExpandedInstanceIDs: c6230000dc3a0300
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1012,7 +1012,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 445.33337
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

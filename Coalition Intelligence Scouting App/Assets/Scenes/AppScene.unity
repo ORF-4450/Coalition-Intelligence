@@ -15244,7 +15244,6 @@ MonoBehaviour:
   pJC: {fileID: 1420296178}
   API_int: {fileID: 1131467328}
   versionDisplay: {fileID: 2916792085502307209}
-  version: Alpha 24.2.6
   currentConfigDevice:
     apiKey: 
     year: 
