@@ -19,6 +19,10 @@ public class SettingsSaver : MonoBehaviour
     public PresetJsonCode pJC;
     public API_Interface API_int;
     public TextMeshProUGUI versionDisplay;
+    public TextMeshProUGUI userDisplay;
+    public string defaultUserDisplayPrefix;
+    public string defaultUserDisplaySuffix;
+
     public string version { get => Application.version;}
 
     public ConfigDevice currentConfigDevice = new();
@@ -56,6 +60,8 @@ public class SettingsSaver : MonoBehaviour
 
         versionDisplay.text = version;
         versionDisplay.gameObject.SetActive(true);
+
+        LoadConfigUser();
     }
 
     public ConfigUser CurrentConfigUser()
@@ -106,7 +112,25 @@ public class SettingsSaver : MonoBehaviour
         ConfigUser loadedConfig = JsonUtility.FromJson<ConfigUser>(File.ReadAllText(configPath));
         reader.Close();
         Debug.Log("Read " + configPath);
+
+        SetUserDisplay(loadedConfig.name);
+
         return loadedConfig;
+    }
+
+    public string SetUserDisplay(string inputString)
+    {
+        string buffer = "";
+        if (inputString != "default")
+        {
+            buffer = defaultUserDisplayPrefix + inputString + '\n' + defaultUserDisplaySuffix;
+        } else {
+            buffer = "No User Selected" + '\n' + defaultUserDisplaySuffix;
+        }
+
+        userDisplay.text = buffer;
+
+        return buffer;
     }
 
     public void LoadConfigUser()

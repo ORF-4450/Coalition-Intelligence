@@ -6,6 +6,7 @@ using TMPro;
 
 public class MatchJsonCode : MonoBehaviour
 {
+    public TextMeshProUGUI scoutedTeamDisplay;
     public Transform variableContainer;
     public TMP_InputField matchNumber;
 
@@ -22,6 +23,11 @@ public class MatchJsonCode : MonoBehaviour
     public void Awake()
     {
         if(!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+    }
+
+    public void SetScoutedTeamDisplay()
+    {
+        scoutedTeamDisplay.text = "Scouted Team: " + team;
     }
 
     [EditorCools.Button]
