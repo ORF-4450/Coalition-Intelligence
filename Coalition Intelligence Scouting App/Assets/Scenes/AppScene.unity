@@ -6690,6 +6690,10 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Gold
       m_Image: {fileID: 0}
+    - m_Text: Purple
+      m_Image: {fileID: 0}
+    - m_Text: Seafoam
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -13603,9 +13607,17 @@ MonoBehaviour:
     secondaryColor: {r: 0.8862745, g: 0.8, b: 0.8156863, a: 1}
     backgroundColor: {r: 0.0754717, g: 0.051738456, b: 0.07047522, a: 1}
   - name: Gold
-    primaryColor: {r: 0.7075472, g: 0.48913047, b: 0, a: 1}
-    secondaryColor: {r: 0.8018868, g: 0.7827665, b: 0.51189625, a: 1}
-    backgroundColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
+    primaryColor: {r: 0.67058825, g: 0.6328963, b: 0.1254902, a: 1}
+    secondaryColor: {r: 0.7647059, g: 0.7563399, b: 0.6392157, a: 1}
+    backgroundColor: {r: 0.06695652, g: 0.07, b: 0.051739134, a: 1}
+  - name: Purple
+    primaryColor: {r: 0.48888907, g: 0.1254902, b: 0.67058825, a: 1}
+    secondaryColor: {r: 0.7228759, g: 0.6392157, b: 0.7647059, a: 1}
+    backgroundColor: {r: 0.09, g: 0.065000005, b: 0.09, a: 1}
+  - name: Seafoam
+    primaryColor: {r: 0.1254902, g: 0.67058825, b: 0.42529422, a: 1}
+    secondaryColor: {r: 0.6392157, g: 0.7647059, b: 0.7082353, a: 1}
+    backgroundColor: {r: 0.06666667, g: 0.09019608, b: 0.083921574, a: 1}
   currentColorIndex: 0
   canvas: {fileID: 196305671}
   cameraObject: {fileID: 1926208284}
