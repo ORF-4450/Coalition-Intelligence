@@ -18,6 +18,7 @@ public class SetUsernames : MonoBehaviour
         reloadUsernames();
     }
 
+
     public void OnDisable()
     {
         SS.SaveConfigUser();
@@ -38,11 +39,22 @@ public class SetUsernames : MonoBehaviour
         FileInfo file = new FileInfo (SS.filePath + "usernames" + ".txt");
         StreamReader reader = file.OpenText();
 
-        string[] lines = File.ReadAllLines(SS.filePath + "usernames" + ".txt");
+        string[] linesArray = File.ReadAllLines(SS.filePath + "usernames" + ".txt");
+        List<string> lines = linesArray.ToList();
+
+        lines.Remove("default");
+        lines.Remove("DEV");
+
+        lines.Sort();
+
+        lines.Insert(0, "default");
+        lines.Insert(1, "DEV");
+
+        
 
         reader.Close();
 
-        foreach (string name in lines.ToList())
+        foreach (string name in lines)
         {
             TMP_Dropdown.OptionData buffer = new();
             buffer.text = name;
@@ -50,5 +62,7 @@ public class SetUsernames : MonoBehaviour
         }
         
         dropdown.options = options;
+
+        gameObject.GetComponent<EnableOnValue>().Check();
     }
 }

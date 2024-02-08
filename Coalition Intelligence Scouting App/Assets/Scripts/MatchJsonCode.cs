@@ -6,6 +6,7 @@ using TMPro;
 
 public class MatchJsonCode : MonoBehaviour
 {
+    public TextMeshProUGUI scoutedTeamDisplay;
     public Transform variableContainer;
     public TMP_InputField matchNumber;
 
@@ -22,6 +23,11 @@ public class MatchJsonCode : MonoBehaviour
     public void Awake()
     {
         if(!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+    }
+
+    public void SetScoutedTeamDisplay()
+    {
+        scoutedTeamDisplay.text = "Scouted Team: " + team;
     }
 
     [EditorCools.Button]
@@ -79,7 +85,7 @@ public class MatchJsonCode : MonoBehaviour
         string keyPath = compFilePath + "keyConfig.csv";
         File.WriteAllText(keyPath, String.Join(',',keys));
 
-        FormatData(compFilePath,compFilePath + "formattedData.csv",keyPath);
+        FormatData(compFilePath,compFilePath + "formattedData_" + SystemInfo.deviceName + ".csv",keyPath);
 
         if (menuSelector != null)
         {

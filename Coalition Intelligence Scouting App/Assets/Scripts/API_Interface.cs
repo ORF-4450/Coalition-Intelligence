@@ -6,6 +6,7 @@ using System.Linq;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class API_Interface : MonoBehaviour
 {
     [SerializeField] SettingsSaver SS { get => API.SS;}
@@ -20,6 +21,8 @@ public class API_Interface : MonoBehaviour
     [SerializeField] public Button resetTBAInfo;
 
     [SerializeField] public SimpleTeamsInEvent defaultTeam = new();
+
+    [SerializeField] UnityEvent onTeamDropdownReset;
 
     public void AddListeners()
     {
@@ -97,6 +100,7 @@ public class API_Interface : MonoBehaviour
         teamDrop.value = 0;
         teamDrop.ClearOptions();
         teamDrop.RefreshShownValue();
+        onTeamDropdownReset.Invoke();
         Debug.Log("Reset Team Drop");
     }
 
