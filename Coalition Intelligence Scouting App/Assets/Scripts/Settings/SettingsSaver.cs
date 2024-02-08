@@ -41,8 +41,6 @@ public class SettingsSaver : MonoBehaviour
             writer.WriteLine("default\nDEV");
             writer.Flush();
             writer.Close();
-
-            SaveConfigUser(defaultConfig);
         }
 
         if (!File.Exists(filePath + "DeviceConfig.json"))
