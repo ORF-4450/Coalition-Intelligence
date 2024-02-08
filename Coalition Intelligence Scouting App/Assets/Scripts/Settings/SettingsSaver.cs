@@ -61,7 +61,13 @@ public class SettingsSaver : MonoBehaviour
         versionDisplay.text = version;
         versionDisplay.gameObject.SetActive(true);
 
-        LoadConfigUser();
+        if (File.Exists(filePath + "Config_default.json"))
+            {
+                LoadConfigUser();
+            } else {
+                SaveConfigUser(defaultConfig);
+                LoadConfigUser();
+            }
     }
 
     public ConfigUser CurrentConfigUser()
